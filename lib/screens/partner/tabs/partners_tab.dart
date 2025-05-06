@@ -87,12 +87,7 @@ class _PartnersTabState extends State<PartnersTab> {
               padding: EdgeInsets.only(bottom: 16),
               child: PartnerCard(
                 partner: _myPartners[index],
-                onTap:
-                    () => Navigator.pushNamed(
-                      context,
-                      '/partner/detail',
-                      arguments: _myPartners[index],
-                    ),
+                onTap: () => _navigateToPartnerDetail(_myPartners[index]),
               ),
             );
           },
@@ -125,11 +120,7 @@ class _PartnersTabState extends State<PartnersTab> {
                 partner: _recommendedPartners[index],
                 isRecommended: true,
                 onTap:
-                    () => Navigator.pushNamed(
-                      context,
-                      '/partner/detail',
-                      arguments: _recommendedPartners[index],
-                    ),
+                    () => _navigateToPartnerDetail(_recommendedPartners[index]),
               ),
             );
           },
@@ -138,12 +129,29 @@ class _PartnersTabState extends State<PartnersTab> {
     );
   }
 
+  // 添加统一的导航方法
+  void _navigateToPartnerDetail(PartnerGroup partner) {
+    // 使用统一的导航方式，只传递ID作为参数
+    Navigator.pushNamed(
+      context,
+      '/partner/detail',
+      arguments: partner.id, // 只传递ID，确保与路由定义匹配
+    );
+  }
+
   Widget _buildEmptyPartnerSection() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/images/empty_partners.png', height: 150),
+          // 注意：如果assets路径有问题，可以使用Icon替代
+          Image.asset(
+            'assets/images/empty_partners.png',
+            height: 150,
+            errorBuilder: (context, error, stackTrace) {
+              return Icon(Icons.group_off, size: 100, color: Colors.grey[400]);
+            },
+          ),
           SizedBox(height: 16),
           Text(
             '还没有加入任何搭子',
