@@ -15,7 +15,7 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-
+```
 lib/
 ├── main.dart                          # 应用入口
 ├── app/
@@ -47,7 +47,10 @@ lib/
 │       ├── privacy/                   # 隐私设置
 │       └── settings/                  # 通用设置
 └── widgets/                           # 共用组件
+```
 
+
+```
 assets/
   └── data/
       └── users/
@@ -63,3 +66,5 @@ assets/
               │   ├── threads.json
               │   └── thread001.json
               └── notifications.json
+
+```
