@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../controllers/messaging_controller.dart';
 import '../../../models/messaging/message.dart';
 import '../../../services/auth_service.dart';
+import '../../../models/user/user_brief.dart';
 import 'dart:math' as math;
 
 class MessageThreadScreen extends StatefulWidget {

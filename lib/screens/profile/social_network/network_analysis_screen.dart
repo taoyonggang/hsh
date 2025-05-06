@@ -6,8 +6,6 @@ import '../../../widgets/feature_chart.dart';
 import 'dart:math' as math;
 
 class NetworkAnalysisScreen extends StatefulWidget {
-  const NetworkAnalysisScreen({super.key});
-
   @override
   _NetworkAnalysisScreenState createState() => _NetworkAnalysisScreenState();
 }
@@ -203,23 +201,18 @@ class _NetworkAnalysisScreenState extends State<NetworkAnalysisScreen>
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8),
-              SizedBox(
+              Container(
                 height: 220,
                 child: FeatureChart(
-                  realData: {
-                    '家人': statisticsData.realFamilyCount,
-                    '朋友': statisticsData.realFriendsCount,
-                    '同事': statisticsData.realColleaguesCount,
-                    '搭子': statisticsData.realPartnersCount,
-                    '其他': statisticsData.realOthersCount,
+                  // 修复参数错误：改用单一data参数并合并数据
+                  data: {
+                    '家人': statisticsData['realFamilyCount'] ?? 0,
+                    '朋友': statisticsData['realFriendsCount'] ?? 0,
+                    '同事': statisticsData['realColleaguesCount'] ?? 0,
+                    '搭子': statisticsData['realPartnersCount'] ?? 0,
+                    '其他': statisticsData['realOthersCount'] ?? 0,
                   },
-                  virtualData: {
-                    '家人': statisticsData.virtualFamilyCount,
-                    '朋友': statisticsData.virtualFriendsCount,
-                    '同事': statisticsData.virtualColleaguesCount,
-                    '搭子': statisticsData.virtualPartnersCount,
-                    '其他': statisticsData.virtualOthersCount,
-                  },
+                  title: '关系分布对比',
                 ),
               ),
               SizedBox(height: 16),
@@ -263,11 +256,18 @@ class _NetworkAnalysisScreenState extends State<NetworkAnalysisScreen>
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 8),
-                      _buildStatItem('用户节点', '${statistics.realNodeCount}'),
-                      _buildStatItem('关系连接', '${statistics.realEdgeCount}'),
+                      // 修复属性访问错误：使用Map访问
+                      _buildStatItem(
+                        '用户节点',
+                        '${statistics['realNodeCount'] ?? 0}',
+                      ),
+                      _buildStatItem(
+                        '关系连接',
+                        '${statistics['realEdgeCount'] ?? 0}',
+                      ),
                       _buildStatItem(
                         '网络密度',
-                        '${statistics.realNetworkDensity.toStringAsFixed(2)}',
+                        '${(statistics['realNetworkDensity'] ?? 0.0).toStringAsFixed(2)}',
                       ),
                     ],
                   ),
@@ -281,11 +281,18 @@ class _NetworkAnalysisScreenState extends State<NetworkAnalysisScreen>
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 8),
-                      _buildStatItem('用户节点', '${statistics.virtualNodeCount}'),
-                      _buildStatItem('关系连接', '${statistics.virtualEdgeCount}'),
+                      // 修复属性访问错误：使用Map访问
+                      _buildStatItem(
+                        '用户节点',
+                        '${statistics['virtualNodeCount'] ?? 0}',
+                      ),
+                      _buildStatItem(
+                        '关系连接',
+                        '${statistics['virtualEdgeCount'] ?? 0}',
+                      ),
                       _buildStatItem(
                         '网络密度',
-                        '${statistics.virtualNetworkDensity.toStringAsFixed(2)}',
+                        '${(statistics['virtualNetworkDensity'] ?? 0.0).toStringAsFixed(2)}',
                       ),
                     ],
                   ),
@@ -322,22 +329,24 @@ class _NetworkAnalysisScreenState extends State<NetworkAnalysisScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            Container(
               height: 150,
               width: double.infinity,
               child: CustomPaint(
                 painter: VennDiagramPainter(
-                  realOnly: statistics.realOnlyCount,
-                  virtualOnly: statistics.virtualOnlyCount,
-                  intersection: statistics.sharedCount,
+                  // 修复属性访问错误：使用Map访问
+                  realOnly: statistics['realOnlyCount'] ?? 0,
+                  virtualOnly: statistics['virtualOnlyCount'] ?? 0,
+                  intersection: statistics['sharedCount'] ?? 0,
                 ),
               ),
             ),
             SizedBox(height: 16),
             Text(
-              '您的虚拟网络与真实网络有 ${statistics.sharedCount} 人重合，'
-              '真实网络中有 ${statistics.realOnlyCount} 人未在虚拟网络中，'
-              '虚拟网络中有 ${statistics.virtualOnlyCount} 人未在真实网络中。',
+              // 修复属性访问错误：使用Map访问
+              '您的虚拟网络与真实网络有 ${statistics['sharedCount'] ?? 0} 人重合，'
+              '真实网络中有 ${statistics['realOnlyCount'] ?? 0} 人未在虚拟网络中，'
+              '虚拟网络中有 ${statistics['virtualOnlyCount'] ?? 0} 人未在真实网络中。',
               style: TextStyle(height: 1.5),
             ),
           ],
@@ -347,7 +356,9 @@ class _NetworkAnalysisScreenState extends State<NetworkAnalysisScreen>
   }
 
   Widget _buildMissedConnectionsCard() {
-    final missedConnections = _comparison!.missedConnections;
+    // 修改为直接从_comparison中获取或初始化为空列表
+    final List<dynamic> missedConnections =
+        (_comparison?.comparisionData?['missedConnections'] as List?) ?? [];
 
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -389,13 +400,14 @@ class _NetworkAnalysisScreenState extends State<NetworkAnalysisScreen>
     );
   }
 
-  Widget _buildConnectionItem(MissedConnection connection) {
+  // 修改函数接受类型为Map的参数
+  Widget _buildConnectionItem(Map<String, dynamic> connection) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
           CircleAvatar(
-            backgroundImage: NetworkImage(connection.avatarUrl),
+            backgroundImage: NetworkImage(connection['avatarUrl'] ?? ''),
             radius: 20,
           ),
           SizedBox(width: 12),
@@ -404,11 +416,11 @@ class _NetworkAnalysisScreenState extends State<NetworkAnalysisScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  connection.name,
+                  connection['name'] ?? '未知用户',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  connection.reason,
+                  connection['reason'] ?? '可能认识',
                   style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                 ),
               ],
@@ -420,7 +432,7 @@ class _NetworkAnalysisScreenState extends State<NetworkAnalysisScreen>
               Navigator.pushNamed(
                 context,
                 '/network/add-virtual-user',
-                arguments: {'suggestedUserId': connection.id},
+                arguments: {'suggestedUserId': connection['id']},
               );
             },
             style: OutlinedButton.styleFrom(
@@ -461,7 +473,9 @@ class _NetworkAnalysisScreenState extends State<NetworkAnalysisScreen>
   }
 
   Widget _buildStrengthDifferenceList() {
-    final differences = _comparison?.strengthDifferences ?? [];
+    // 修改为直接从_comparison中获取或初始化为空列表
+    final List<dynamic> differences =
+        (_comparison?.comparisionData?['strengthDifferences'] as List?) ?? [];
 
     return differences.isEmpty
         ? Text('没有明显的关系强度感知差异')
@@ -474,12 +488,16 @@ class _NetworkAnalysisScreenState extends State<NetworkAnalysisScreen>
         );
   }
 
-  Widget _buildStrengthDifferenceItem(StrengthDifference diff) {
+  // 修改函数接受类型为Map的参数
+  Widget _buildStrengthDifferenceItem(Map<String, dynamic> diff) {
     String message;
     IconData icon;
     Color color;
 
-    if (diff.perceivedStrength > diff.actualStrength) {
+    final perceivedStrength = diff['perceivedStrength'] ?? 0.5;
+    final actualStrength = diff['actualStrength'] ?? 0.5;
+
+    if (perceivedStrength > actualStrength) {
       message = '您认为关系较为亲密，但实际互动较少';
       icon = Icons.arrow_downward;
       color = Colors.orange;
@@ -495,9 +513,11 @@ class _NetworkAnalysisScreenState extends State<NetworkAnalysisScreen>
         children: [
           CircleAvatar(
             backgroundImage:
-                diff.avatarUrl != null ? NetworkImage(diff.avatarUrl!) : null,
+                diff['avatarUrl'] != null
+                    ? NetworkImage(diff['avatarUrl'])
+                    : null,
+            child: diff['avatarUrl'] == null ? Icon(Icons.person) : null,
             radius: 20,
-            child: diff.avatarUrl == null ? Icon(Icons.person) : null,
           ),
           SizedBox(width: 12),
           Expanded(
@@ -505,7 +525,7 @@ class _NetworkAnalysisScreenState extends State<NetworkAnalysisScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  diff.userName,
+                  diff['userName'] ?? '未知用户',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 2),
@@ -527,11 +547,11 @@ class _NetworkAnalysisScreenState extends State<NetworkAnalysisScreen>
           Column(
             children: [
               Text(
-                '感知: ${(diff.perceivedStrength * 10).toStringAsFixed(0)}',
+                '感知: ${((perceivedStrength as double) * 10).toStringAsFixed(0)}',
                 style: TextStyle(fontSize: 12),
               ),
               Text(
-                '实际: ${(diff.actualStrength * 10).toStringAsFixed(0)}',
+                '实际: ${((actualStrength as double) * 10).toStringAsFixed(0)}',
                 style: TextStyle(fontSize: 12),
               ),
             ],
@@ -631,7 +651,7 @@ class _NetworkAnalysisScreenState extends State<NetworkAnalysisScreen>
 
     return Column(
       children: [
-        SizedBox(
+        Container(
           width: 100,
           height: 100,
           child: Stack(

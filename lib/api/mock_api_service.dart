@@ -276,21 +276,6 @@ class MockApiService {
     }
   }
 
-  // Mock get social feeds
-  Future<List<dynamic>> getSocialFeeds() async {
-    try {
-      await Future.delayed(Duration(milliseconds: 300));
-      final String data = await rootBundle.loadString(
-        'assets/mock/social_feeds.json',
-      );
-      final result = _safeJsonDecode(data);
-      return result is List ? result : [];
-    } catch (e) {
-      print('Error loading social feeds: $e');
-      return [];
-    }
-  }
-
   // Mock get social groups
   Future<List<dynamic>> getSocialGroups() async {
     try {

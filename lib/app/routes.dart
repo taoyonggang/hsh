@@ -257,7 +257,7 @@ class AppRouter {
       case Routes.partnerDetail:
         if (args is String) {
           return MaterialPageRoute(
-            builder: (_) => PartnerDetailScreen(partnerId: args),
+            builder: (_) => PartnerDetailScreen(partnerData: {'id': args}),
           );
         }
         return _errorRoute();
