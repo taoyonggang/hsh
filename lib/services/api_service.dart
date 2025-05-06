@@ -1,181 +1,214 @@
 import 'package:flutter/material.dart';
-import '../services/auth_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+import '../models/user/user_roles.dart'; // 导入用户角色枚举
 
-class PermissionService {
+class UserSession {
+  final String userId;
+  final String username;
+  final UserRole role;
+  final List<UserRole> subscriptions; // 用户可能同时拥有多种会员
+  final DateTime loginTime;
+  final DateTime? membershipExpiry;
+
+  UserSession({
+    required this.userId,
+    required this.username,
+    required this.role,
+    this.subscriptions = const [],
+    required this.loginTime,
+    this.membershipExpiry,
+  });
+
+  bool get isLoggedIn => role != UserRole.guest;
+  bool get isFullUser => role != UserRole.guest;
+  bool get isPartnerMember => subscriptions.contains(UserRole.partnerMember);
+  bool get isSocialMember => subscriptions.contains(UserRole.socialMember);
+  bool get isHealthMember => subscriptions.contains(UserRole.healthMember);
+
+  // 判断是否有某个权限
+  bool hasRole(UserRole checkRole) {
+    if (role == checkRole) return true;
+    return subscriptions.contains(checkRole);
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'userId': userId,
+      'username': username,
+      'role': role.index,
+      'subscriptions': subscriptions.map((r) => r.index).toList(),
+      'loginTime': loginTime.millisecondsSinceEpoch,
+      'membershipExpiry': membershipExpiry?.millisecondsSinceEpoch,
+    };
+  }
+
+  factory UserSession.fromJson(Map<String, dynamic> json) {
+    return UserSession(
+      userId: json['userId'],
+      username: json['username'],
+      role: UserRole.values[json['role']],
+      subscriptions:
+          (json['subscriptions'] as List?)
+              ?.map((i) => UserRole.values[i])
+              ?.toList() ??
+          [],
+      loginTime: DateTime.fromMillisecondsSinceEpoch(json['loginTime']),
+      membershipExpiry:
+          json['membershipExpiry'] != null
+              ? DateTime.fromMillisecondsSinceEpoch(json['membershipExpiry'])
+              : null,
+    );
+  }
+
+  // 访客会话
+  static UserSession guest() {
+    return UserSession(
+      userId: 'guest',
+      username: '访客',
+      role: UserRole.guest,
+      loginTime: DateTime.now(),
+    );
+  }
+}
+
+class AuthService extends ChangeNotifier {
   // 单例模式
-  static final PermissionService _instance = PermissionService._internal();
-  factory PermissionService() => _instance;
-  PermissionService._internal();
+  static final AuthService _instance = AuthService._internal();
+  factory AuthService() => _instance;
+  AuthService._internal();
 
-  // 定义各页面所需的权限
-  final Map<String, List<UserRole>> _routePermissions = {
-    '/': [
-      UserRole.guest,
-      UserRole.user,
-      UserRole.partnerMember,
-      UserRole.socialMember,
-      UserRole.healthMember,
-    ],
-    '/login': [
-      UserRole.guest,
-      UserRole.user,
-      UserRole.partnerMember,
-      UserRole.socialMember,
-      UserRole.healthMember,
-    ],
-    '/register': [
-      UserRole.guest,
-      UserRole.user,
-      UserRole.partnerMember,
-      UserRole.socialMember,
-      UserRole.healthMember,
-    ],
+  // 当前用户会话
+  UserSession _currentSession = UserSession.guest();
 
-    // 用户权限以上页面
-    '/profile': [
-      UserRole.user,
-      UserRole.partnerMember,
-      UserRole.socialMember,
-      UserRole.healthMember,
-    ],
-    '/profile/edit': [
-      UserRole.user,
-      UserRole.partnerMember,
-      UserRole.socialMember,
-      UserRole.healthMember,
-    ],
-    '/health/basic': [
-      UserRole.user,
-      UserRole.partnerMember,
-      UserRole.socialMember,
-      UserRole.healthMember,
-    ],
-    '/fortune/basic': [
-      UserRole.user,
-      UserRole.partnerMember,
-      UserRole.socialMember,
-      UserRole.healthMember,
-    ],
-
-    // 搭子会员权限页面
-    '/communities/manage': [UserRole.partnerMember],
-    '/activities/create': [UserRole.partnerMember],
-    '/activities/priority': [UserRole.partnerMember],
-
-    // 社交会员权限页面
-    '/social/virtual-network': [UserRole.socialMember],
-    '/social/network-analysis': [UserRole.socialMember],
-    '/social/relationship-analysis': [UserRole.socialMember],
-
-    // 健康会员权限页面
-    '/health/advanced': [UserRole.healthMember],
-    '/health/reports': [UserRole.healthMember],
-    '/health/consultation': [UserRole.healthMember],
-  };
-
-  // 功能权限配额
-  final Map<String, Map<UserRole, int>> _featureQuotas = {
-    'healthAnalysis': {
-      UserRole.user: 1,
-      UserRole.partnerMember: 1,
-      UserRole.socialMember: 1,
-      UserRole.healthMember: 100,
+  // 测试账号数据 - 根据分层设计
+  final Map<String, Map<String, dynamic>> _users = {
+    'taoyonggang': {
+      'password': '123456',
+      'userId': 'user123',
+      'role': UserRole.user,
+      'subscriptions': [
+        UserRole.partnerMember,
+        UserRole.socialMember,
+        UserRole.healthMember,
+      ],
+      'membershipExpiry': DateTime(2026, 5, 6),
     },
-    'socialAnalysis': {
-      UserRole.user: 1,
-      UserRole.partnerMember: 1,
-      UserRole.socialMember: 100,
-      UserRole.healthMember: 1,
+    'user': {
+      'password': 'user123',
+      'userId': 'user456',
+      'role': UserRole.user,
+      'subscriptions': [],
     },
-    'fortuneAnalysis': {
-      UserRole.user: 1,
-      UserRole.partnerMember: 1,
-      UserRole.socialMember: 100,
-      UserRole.healthMember: 1,
+    'partner': {
+      'password': 'partner123',
+      'userId': 'user789',
+      'role': UserRole.user,
+      'subscriptions': [UserRole.partnerMember],
+      'membershipExpiry': DateTime(2025, 12, 31),
     },
-    'communityCreate': {
-      UserRole.user: 1,
-      UserRole.partnerMember: 100,
-      UserRole.socialMember: 1,
-      UserRole.healthMember: 1,
+    'social': {
+      'password': 'social123',
+      'userId': 'user101',
+      'role': UserRole.user,
+      'subscriptions': [UserRole.socialMember],
+      'membershipExpiry': DateTime(2025, 12, 31),
     },
-    'communityMemberLimit': {
-      UserRole.user: 50,
-      UserRole.partnerMember: 500,
-      UserRole.socialMember: 50,
-      UserRole.healthMember: 50,
+    'health': {
+      'password': 'health123',
+      'userId': 'user202',
+      'role': UserRole.user,
+      'subscriptions': [UserRole.healthMember],
+      'membershipExpiry': DateTime(2025, 12, 31),
     },
-    'healthAdviceLength': {
-      UserRole.user: 500,
-      UserRole.partnerMember: 500,
-      UserRole.socialMember: 500,
-      UserRole.healthMember: -1, // 无限制
+    'guest': {
+      'password': 'guest123',
+      'userId': 'guest303',
+      'role': UserRole.guest,
+      'subscriptions': [],
     },
   };
 
-  // 检查用户是否有权限访问指定路由
-  bool canAccessRoute(String route) {
-    final authService = AuthService();
+  // 当前会话访问器
+  UserSession get currentSession => _currentSession;
+  String get currentUserId => _currentSession.userId;
+  String get currentUsername => _currentSession.username;
+  UserRole get currentRole => _currentSession.role;
+  bool get isLoggedIn => _currentSession.isLoggedIn;
+  bool get isFullUser => _currentSession.isFullUser;
+  bool get isPartnerMember => _currentSession.isPartnerMember;
+  bool get isSocialMember => _currentSession.isSocialMember;
+  bool get isHealthMember => _currentSession.isHealthMember;
 
-    // 如果权限表中没定义，默认需要登录用户权限
-    if (!_routePermissions.containsKey(route)) {
-      return authService.isFullUser;
-    }
+  // 检查特定权限
+  bool hasRole(UserRole role) => _currentSession.hasRole(role);
 
-    final allowedRoles = _routePermissions[route]!;
+  // 初始化（从持久化存储恢复会话）
+  Future<void> initialize() async {
+    final prefs = await SharedPreferences.getInstance();
+    final sessionData = prefs.getString('userSession');
 
-    // 检查用户角色是否在允许列表中
-    if (allowedRoles.contains(authService.currentRole)) {
-      return true;
-    }
+    if (sessionData != null) {
+      try {
+        final Map<String, dynamic> json = Map<String, dynamic>.from(
+          jsonDecode(sessionData),
+        );
+        _currentSession = UserSession.fromJson(json);
+        notifyListeners();
 
-    // 检查用户订阅权限
-    for (var role in allowedRoles) {
-      if (authService.hasRole(role)) {
-        return true;
+        print('已恢复会话: ${_currentSession.username} (${_currentSession.role})');
+      } catch (e) {
+        print('恢复会话失败: $e');
+        await logout();
       }
     }
-
-    return false;
   }
 
-  // 获取特定功能的配额
-  int getQuota(String featureKey) {
-    final authService = AuthService();
-
-    // 如果功能不存在配额表中
-    if (!_featureQuotas.containsKey(featureKey)) {
-      return 0;
+  // 登录方法
+  Future<bool> login(String username, String password) async {
+    // 检查用户名和密码
+    if (!_users.containsKey(username) ||
+        _users[username]!['password'] != password) {
+      return false;
     }
 
-    final quotaMap = _featureQuotas[featureKey]!;
+    final userData = _users[username]!;
 
-    // 优先检查订阅会员的权限配额
-    if (authService.isHealthMember &&
-        quotaMap.containsKey(UserRole.healthMember)) {
-      return quotaMap[UserRole.healthMember]!;
-    }
+    // 创建新会话
+    _currentSession = UserSession(
+      userId: userData['userId'],
+      username: username,
+      role: userData['role'],
+      subscriptions: userData['subscriptions'] ?? [],
+      loginTime: DateTime.now(),
+      membershipExpiry: userData['membershipExpiry'],
+    );
 
-    if (authService.isSocialMember &&
-        quotaMap.containsKey(UserRole.socialMember)) {
-      return quotaMap[UserRole.socialMember]!;
-    }
+    // 持久化会话
+    await _saveSession();
 
-    if (authService.isPartnerMember &&
-        quotaMap.containsKey(UserRole.partnerMember)) {
-      return quotaMap[UserRole.partnerMember]!;
-    }
+    // 通知监听者（用于UI更新）
+    notifyListeners();
 
-    // 最后检查基本用户权限
-    if (authService.isFullUser && quotaMap.containsKey(UserRole.user)) {
-      return quotaMap[UserRole.user]!;
-    }
-
-    return 0;
+    print('登录成功: $username (${_currentSession.role})');
+    return true;
   }
 
-  // 检查是否有权限
-  bool hasFeaturePermission(String featureKey) {
-    return getQuota(featureKey) != 0;
+  // 退出登录
+  Future<void> logout() async {
+    _currentSession = UserSession.guest();
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('userSession');
+
+    notifyListeners();
+    print('已退出登录');
+  }
+
+  // 保存会话到持久化存储
+  Future<void> _saveSession() async {
+    final prefs = await SharedPreferences.getInstance();
+    final sessionData = jsonEncode(_currentSession.toJson());
+    await prefs.setString('userSession', sessionData);
   }
 }

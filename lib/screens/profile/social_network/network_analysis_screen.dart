@@ -204,13 +204,19 @@ class _NetworkAnalysisScreenState extends State<NetworkAnalysisScreen>
               Container(
                 height: 220,
                 child: FeatureChart(
-                  // 修复参数错误：改用单一data参数并合并数据
-                  data: {
+                  realData: {
                     '家人': statisticsData['realFamilyCount'] ?? 0,
                     '朋友': statisticsData['realFriendsCount'] ?? 0,
                     '同事': statisticsData['realColleaguesCount'] ?? 0,
                     '搭子': statisticsData['realPartnersCount'] ?? 0,
                     '其他': statisticsData['realOthersCount'] ?? 0,
+                  },
+                  virtualData: {
+                    '家人': statisticsData['virtualFamilyCount'] ?? 0,
+                    '朋友': statisticsData['virtualFriendsCount'] ?? 0,
+                    '同事': statisticsData['virtualColleaguesCount'] ?? 0,
+                    '搭子': statisticsData['virtualPartnersCount'] ?? 0,
+                    '其他': statisticsData['virtualOthersCount'] ?? 0,
                   },
                   title: '关系分布对比',
                 ),

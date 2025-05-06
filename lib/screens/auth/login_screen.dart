@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../services/auth_service.dart';
+import '../../models/user/user_roles.dart';
 import 'package:intl/intl.dart';
 
 class LoginScreen extends StatefulWidget {
