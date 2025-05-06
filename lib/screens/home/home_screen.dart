@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: _buildBody(),
-      bottomNavigationBar: _buildBottomNavBar(),
+      bottomNavigationBar: AppBottomNavigation(currentIndex: 0),
       floatingActionButton: _buildFloatingActionButton(),
     );
   }

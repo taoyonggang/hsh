@@ -63,6 +63,7 @@ class _PartnerScreenState extends State<PartnerScreen>
         },
         child: Icon(Icons.add),
       ),
+      bottomNavigationBar: AppBottomNavigation(currentIndex: 3),
     );
   }
 

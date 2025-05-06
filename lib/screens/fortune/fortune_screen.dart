@@ -60,6 +60,8 @@ class _FortuneScreenState extends State<FortuneScreen>
                 controller: _tabController,
                 children: [BaziTab(), QimenTab(), PredictionTab()],
               ),
+      // 添加此行以包含底部导航栏
+      bottomNavigationBar: AppBottomNavigation(currentIndex: 2),
     );
   }
 }

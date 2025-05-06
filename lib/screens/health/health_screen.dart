@@ -79,6 +79,7 @@ class _HealthScreenState extends State<HealthScreen>
                 child: Icon(Icons.add),
               )
               : null,
+      bottomNavigationBar: AppBottomNavigation(currentIndex: 1),
     );
   }
 

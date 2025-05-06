@@ -8,6 +8,7 @@ import 'messaging/messaging_center_screen.dart';
 import 'privacy/privacy_settings_screen.dart';
 import 'social_network/network_analysis_screen.dart';
 import 'settings/settings_screen.dart';
+import '../../widgets/app_bottom_navigation.dart'; // 添加导入底部导航栏组件
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -61,6 +62,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   SliverToBoxAdapter(child: SizedBox(height: 40)),
                 ],
               ),
+      bottomNavigationBar: AppBottomNavigation(
+        currentIndex: 4,
+      ), // 添加底部导航栏，索引4对应"我的"选项
     );
   }
 
