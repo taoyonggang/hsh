@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../controllers/user_controller.dart';
-import '../../models/user/user_profile.dart';
+import '../../../controllers/user_controller.dart';
+import '../../../models/user/user_profile.dart';
 
 class ProfileEditScreen extends StatefulWidget {
   const ProfileEditScreen({super.key});
