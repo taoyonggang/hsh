@@ -1,14 +1,22 @@
 ﻿import 'package:flutter/material.dart';
-import 'screens/home/home_screen.dart';
-import 'screens/health/health_screen.dart';
-import 'screens/fortune/fortune_screen.dart';
-import 'screens/partner/partner_screen.dart';
-import 'screens/profile/profile_screen.dart';
-import 'services/auth_service.dart';
+import 'package:flutter/services.dart';
 import 'app/routes.dart';
+import 'services/auth_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // 设置系统UI样式
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarDividerColor: Colors.transparent,
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ),
+  );
 
   // 初始化认证服务
   await AuthService().initialize();
@@ -16,7 +24,32 @@ void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final AuthService _authService = AuthService();
+
+  @override
+  void initState() {
+    super.initState();
+    // 监听登录状态变化
+    _authService.addListener(_handleAuthStateChange);
+  }
+
+  @override
+  void dispose() {
+    _authService.removeListener(_handleAuthStateChange);
+    super.dispose();
+  }
+
+  // 处理登录状态变化
+  void _handleAuthStateChange() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,85 +57,42 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        scaffoldBackgroundColor: Colors.grey[50],
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.green,
+          elevation: 1,
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          iconTheme: IconThemeData(color: Colors.white),
+        ),
+        cardTheme: CardTheme(
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        buttonTheme: ButtonThemeData(
+          buttonColor: Colors.green,
+          textTheme: ButtonTextTheme.primary,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.green,
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
       ),
-      onGenerateRoute: AppRouter.generateRoute,
+      // 确保使用明确的根路由
       initialRoute: '/',
+      onGenerateRoute: AppRouter.generateRoute,
       debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-/// 主导航屏幕 - 控制底部导航和页面切换
-class MainNavigationScreen extends StatefulWidget {
-  const MainNavigationScreen({super.key});
-
-  @override
-  _MainNavigationScreenState createState() => _MainNavigationScreenState();
-}
-
-class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _currentIndex = 0;
-  final String _username = "taoyonggang"; // 当前登录用户
-  final DateTime _now = DateTime.utc(2025, 4, 30, 1, 7, 11); // 使用当前的UTC时间
-
-  // 定义所有主要页面
-  late final List<Widget> _screens;
-
-  @override
-  void initState() {
-    super.initState();
-    // 初始化所有页面，并传入用户名
-    _screens = [
-      HomeScreen(username: _username, currentDate: _now),
-      HealthScreen(),
-      FortuneScreen(),
-      PartnerScreen(),
-      ProfileScreen(),
-    ];
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(index: _currentIndex, children: _screens),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.green,
-        unselectedItemColor: Colors.grey,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
-            label: '首页',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            activeIcon: Icon(Icons.favorite),
-            label: '健康',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.auto_graph),
-            activeIcon: Icon(Icons.auto_graph),
-            label: '运势',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people_outline),
-            activeIcon: Icon(Icons.people),
-            label: '搭子',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            activeIcon: Icon(Icons.person),
-            label: '我的',
-          ),
-        ],
-      ),
     );
   }
 }

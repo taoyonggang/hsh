@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
-import '../models/user/user_roles.dart'; // 添加这一行导入
+import '../models/user/user_roles.dart';
 
 class PermissionService {
   // 单例模式
@@ -17,6 +17,13 @@ class PermissionService {
       UserRole.socialMember,
       UserRole.healthMember,
     ],
+    '/home': [
+      UserRole.guest,
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
     '/login': [
       UserRole.guest,
       UserRole.user,
@@ -25,6 +32,13 @@ class PermissionService {
       UserRole.healthMember,
     ],
     '/register': [
+      UserRole.guest,
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+    '/forgot-password': [
       UserRole.guest,
       UserRole.user,
       UserRole.partnerMember,
@@ -57,21 +71,56 @@ class PermissionService {
       UserRole.socialMember,
       UserRole.healthMember,
     ],
+    '/settings': [
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+    '/health/data': [
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+    '/health': [
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+    '/fortune': [
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+    '/partner': [
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
 
     // 搭子会员权限页面
     '/communities/manage': [UserRole.partnerMember],
     '/activities/create': [UserRole.partnerMember],
     '/activities/priority': [UserRole.partnerMember],
+    '/partner/activity/create': [UserRole.partnerMember],
 
     // 社交会员权限页面
     '/social/virtual-network': [UserRole.socialMember],
     '/social/network-analysis': [UserRole.socialMember],
     '/social/relationship-analysis': [UserRole.socialMember],
+    '/network/virtual': [UserRole.socialMember],
+    '/network/compare': [UserRole.socialMember],
+    '/network/add-virtual-user': [UserRole.socialMember],
 
     // 健康会员权限页面
     '/health/advanced': [UserRole.healthMember],
     '/health/reports': [UserRole.healthMember],
     '/health/consultation': [UserRole.healthMember],
+    '/health/report': [UserRole.healthMember],
   };
 
   // 功能权限配额

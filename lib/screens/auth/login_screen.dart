@@ -26,7 +26,16 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isPasswordVisible = false;
   String? _errorMessage;
 
-  final DateTime _now = DateTime.utc(2025, 5, 6, 6, 35, 0);
+  // 当前时间：2025-05-06 07:17:51
+  final DateTime _now = DateTime.utc(2025, 5, 6, 7, 17, 51);
+
+  @override
+  void initState() {
+    super.initState();
+    // 开发便利：预填充登录信息
+    _usernameController.text = 'taoyonggang';
+    _passwordController.text = '123456';
+  }
 
   @override
   void dispose() {
@@ -119,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         SizedBox(height: 8),
         Text(
-          '现在时间: ${DateFormat('yyyy-MM-dd HH:mm:ss').format(_now)}',
+          '现在时间: ${DateFormat('yyyy-MM-dd HH:mm:ss').format(_now)} UTC',
           style: TextStyle(color: Colors.grey),
         ),
       ],
@@ -273,7 +282,7 @@ class _LoginScreenState extends State<LoginScreen> {
           _buildTestAccount('guest', '访客用户'),
           SizedBox(height: 8),
           Text(
-            '所有账号密码: 用户名+123 (例如: user123)',
+            '所有账号密码: 用户名+123 (例如: user123)\ntaoyonggang密码: 123456',
             style: TextStyle(fontSize: 12, color: Colors.grey.shade700),
           ),
         ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'tabs/partners_tab.dart';
 import 'tabs/activities_tab.dart';
 import 'tabs/matching_tab.dart';
+import '../../widgets/app_bottom_navigation.dart';
 
 class PartnerScreen extends StatefulWidget {
   const PartnerScreen({super.key});

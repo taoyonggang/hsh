@@ -4,6 +4,7 @@ import 'tabs/overview_tab.dart';
 import 'tabs/data_recording_tab.dart';
 import 'tabs/analysis_tab.dart';
 import 'tabs/advisor_tab.dart';
+import '../../widgets/app_bottom_navigation.dart';
 
 class HealthScreen extends StatefulWidget {
   const HealthScreen({super.key});

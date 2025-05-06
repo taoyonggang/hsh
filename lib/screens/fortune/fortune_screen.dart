@@ -3,6 +3,7 @@ import '../../controllers/fortune_controller.dart';
 import 'tabs/bazi_tab.dart';
 import 'tabs/qimen_tab.dart';
 import 'tabs/prediction_tab.dart';
+import '../../widgets/app_bottom_navigation.dart';
 
 class FortuneScreen extends StatefulWidget {
   const FortuneScreen({super.key});

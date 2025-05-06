@@ -1,419 +1,441 @@
 import 'package:flutter/material.dart';
-import 'package:huishengapp/main.dart';
 import '../../api/mock_api_service.dart';
+import '../../services/auth_service.dart';
+import '../../widgets/app_bottom_navigation.dart';
 
 class HomeScreen extends StatefulWidget {
-  final String username;
-  final DateTime currentDate;
-
-  const HomeScreen({
-    super.key,
-    required this.username,
-    required this.currentDate,
-  });
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final MockApiService _apiService = MockApiService();
-
-  Map<String, dynamic>? _userProfile;
-  Map<String, dynamic>? _healthOverview;
-  List<dynamic>? _socialFeeds;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isLoading = true;
-  String _formattedDate = '';
+  List<dynamic> _feeds = [];
+  String _errorMessage = '';
 
   @override
   void initState() {
     super.initState();
-    // 格式化当前日期
-    _formattedDate =
-        '${widget.currentDate.year}年${widget.currentDate.month}月${widget.currentDate.day}日';
-    _loadData();
+    _loadSocialFeeds();
   }
 
-  Future<void> _loadData() async {
-    setState(() => _isLoading = true);
+  Future<void> _loadSocialFeeds() async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
+
     try {
-      _userProfile = await _apiService.getUserProfile();
-      // 更新用户名称为当前登录用户
-      if (_userProfile != null) {
-        _userProfile!['username'] = widget.username;
-      }
-      _healthOverview = await _apiService.getHealthOverview();
-      _socialFeeds = await _apiService.getSocialFeeds();
+      // 使用mock数据服务来获取社交动态
+      final feeds = await MockApiService().getSocialFeeds();
+
+      setState(() {
+        _feeds = feeds;
+        _isLoading = false;
+      });
     } catch (e) {
-      print('Error loading data: $e');
-    } finally {
-      setState(() => _isLoading = false);
+      setState(() {
+        _errorMessage = '无法加载动态: $e';
+        _isLoading = false;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final authService = AuthService();
+    final username = authService.currentUsername;
+    final isLoggedIn = authService.isLoggedIn;
+
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('汇升活健康搭子平台'),
         actions: [
-          IconButton(
-            icon: Badge(
-              label: Text('3'),
-              child: Icon(Icons.notifications_outlined),
-            ),
-            onPressed: () {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text('您有3条新消息')));
-            },
-          ),
-          IconButton(
-            icon: Badge(label: Text('2'), child: Icon(Icons.message_outlined)),
-            onPressed: () {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text('您有2条未读私信')));
-            },
-          ),
-        ],
-      ),
-      body:
-          _isLoading
-              ? Center(child: CircularProgressIndicator())
-              : RefreshIndicator(
-                onRefresh: _loadData,
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildDateHeader(),
-                      _buildUserHeader(),
-                      _buildHealthOverview(),
-                      _buildSectionTitle('搭子动态', '查看全部'),
-                      _buildSocialFeeds(),
-                      SizedBox(height: 20),
-                    ],
+          if (!isLoggedIn)
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/login');
+              },
+              child: Text('登录', style: TextStyle(color: Colors.white)),
+            )
+          else
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: Row(
+                children: [
+                  Text('欢迎, $username', style: TextStyle(fontSize: 14)),
+                  SizedBox(width: 8),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/profile');
+                    },
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                        'https://randomuser.me/api/portraits/men/32.jpg',
+                      ),
+                      radius: 14,
+                    ),
                   ),
-                ),
-              ),
-    );
-  }
-
-  Widget _buildDateHeader() {
-    return Container(
-      padding: EdgeInsets.fromLTRB(16, 8, 16, 4),
-      child: Text(
-        '今日 $_formattedDate',
-        style: TextStyle(color: Colors.grey[600], fontWeight: FontWeight.w500),
-      ),
-    );
-  }
-
-  Widget _buildUserHeader() {
-    if (_userProfile == null) {
-      return Container(
-        padding: EdgeInsets.all(16),
-        child: Center(child: Text("加载中...")),
-      );
-    }
-
-    return Container(
-      margin: EdgeInsets.all(16),
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: 30,
-            backgroundImage:
-                _userProfile!['avatar'] != null
-                    ? NetworkImage(_userProfile!['avatar'])
-                    : null,
-            child: _userProfile!['avatar'] == null ? Icon(Icons.person) : null,
-          ),
-          SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '您好，${_userProfile!['username'] ?? "用户"}',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 4),
-                Text(
-                  _getMembershipText(),
-                  style: TextStyle(color: Colors.green),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              color: Colors.green,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Text(
-              '签到',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+                ],
               ),
             ),
-          ),
         ],
       ),
+      body: _buildBody(),
+      bottomNavigationBar: _buildBottomNavBar(),
+      floatingActionButton: _buildFloatingActionButton(),
     );
   }
 
-  Widget _buildHealthOverview() {
-    if (_healthOverview == null) {
-      return Padding(
-        padding: EdgeInsets.all(16),
-        child: Center(child: Text("加载健康数据中...")),
+  Widget _buildBody() {
+    if (_isLoading) {
+      return Center(child: CircularProgressIndicator());
+    }
+
+    if (_errorMessage.isNotEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.error_outline, size: 48, color: Colors.red),
+            SizedBox(height: 16),
+            Text(_errorMessage),
+            SizedBox(height: 24),
+            ElevatedButton(onPressed: _loadSocialFeeds, child: Text('重试')),
+          ],
+        ),
       );
     }
 
-    return Padding(
-      padding: EdgeInsets.all(16),
+    if (_feeds.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.feed, size: 48, color: Colors.grey),
+            SizedBox(height: 16),
+            Text('暂无动态'),
+          ],
+        ),
+      );
+    }
+
+    return RefreshIndicator(
+      onRefresh: _loadSocialFeeds,
+      child: ListView.builder(
+        padding: EdgeInsets.all(16),
+        itemCount: _feeds.length,
+        itemBuilder: (context, index) {
+          final feed = _feeds[index];
+          return _buildFeedCard(feed);
+        },
+      ),
+    );
+  }
+
+  Widget _buildFeedCard(Map<String, dynamic> feed) {
+    // 获取作者信息
+    final String authorName = feed['authorName'] ?? '未知用户';
+    final String authorAvatar =
+        feed['authorAvatar'] ??
+        'https://randomuser.me/api/portraits/lego/1.jpg';
+    final String content = feed['content'] ?? '无内容';
+    final List<dynamic> imageUrls = feed['imageUrls'] ?? [];
+    final int likeCount = feed['likeCount'] ?? 0;
+    final int commentCount = feed['commentCount'] ?? 0;
+    final String timestamp = feed['timestamp'] ?? '';
+    final String location = feed['location'] ?? '';
+
+    DateTime? dateTime;
+    String timeAgo = '';
+
+    try {
+      dateTime = DateTime.parse(timestamp);
+      // 当前时间是 2025-05-06 07:26:17
+      final now = DateTime.utc(2025, 5, 6, 7, 26, 17);
+      final difference = now.difference(dateTime);
+
+      if (difference.inDays > 0) {
+        timeAgo = '${difference.inDays}天前';
+      } else if (difference.inHours > 0) {
+        timeAgo = '${difference.inHours}小时前';
+      } else if (difference.inMinutes > 0) {
+        timeAgo = '${difference.inMinutes}分钟前';
+      } else {
+        timeAgo = '刚刚';
+      }
+    } catch (e) {
+      timeAgo = '未知时间';
+    }
+
+    // 判断是否是当前登录用户的动态
+    final bool isCurrentUserPost = authorName.toLowerCase() == 'taoyonggang';
+
+    return Card(
+      elevation: 2,
+      margin: EdgeInsets.only(bottom: 16),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side:
+            isCurrentUserPost
+                ? BorderSide(color: Colors.green.shade200, width: 1.5)
+                : BorderSide.none,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            '健康概览',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ListTile(
+            leading: CircleAvatar(backgroundImage: NetworkImage(authorAvatar)),
+            title: Row(
+              children: [
+                Text(authorName, style: TextStyle(fontWeight: FontWeight.bold)),
+                if (isCurrentUserPost)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Icon(
+                      Icons.verified_user,
+                      color: Colors.green,
+                      size: 16,
+                    ),
+                  ),
+              ],
+            ),
+            subtitle: Text(location),
+            trailing: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(timeAgo, style: TextStyle(color: Colors.grey)),
+                SizedBox(height: 4),
+                if (isCurrentUserPost)
+                  Text(
+                    '我的动态',
+                    style: TextStyle(color: Colors.green, fontSize: 12),
+                  ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(content),
+          ),
+          if (imageUrls.isNotEmpty) ...[
+            SizedBox(height: 8),
+            _buildImageGallery(imageUrls),
+          ],
+          Divider(),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildActionButton(Icons.thumb_up_outlined, '$likeCount 赞', () {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text('已点赞')));
+                }),
+                _buildActionButton(
+                  Icons.comment_outlined,
+                  '$commentCount 评论',
+                  () {
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text('评论功能开发中...')));
+                  },
+                ),
+                _buildActionButton(Icons.share_outlined, '分享', () {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text('分享功能开发中...')));
+                }),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildImageGallery(List<dynamic> imageUrls) {
+    if (imageUrls.length == 1) {
+      return Container(
+        height: 200,
+        width: double.infinity,
+        child: ClipRRect(child: Image.network(imageUrls[0], fit: BoxFit.cover)),
+      );
+    }
+
+    return Container(
+      height: 120,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: imageUrls.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.only(
+              left: index == 0 ? 16 : 8,
+              right: index == imageUrls.length - 1 ? 16 : 0,
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                imageUrls[index],
+                width: 160,
+                height: 120,
+                fit: BoxFit.cover,
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildActionButton(
+    IconData icon,
+    String label,
+    VoidCallback onPressed,
+  ) {
+    return InkWell(
+      onTap: onPressed,
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+        child: Row(
+          children: [Icon(icon, size: 18), SizedBox(width: 4), Text(label)],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBottomNavBar() {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed, // 修改这一行，使用正确的枚举类型
+      currentIndex: 0,
+      selectedItemColor: Colors.green,
+      unselectedItemColor: Colors.grey,
+      onTap: (index) {
+        switch (index) {
+          case 0: // 首页已经在当前页
+            break;
+          case 1: // 健康
+            Navigator.pushNamed(context, '/health');
+            break;
+          case 2: // 运势
+            Navigator.pushNamed(context, '/fortune');
+            break;
+          case 3: // 搭子
+            Navigator.pushNamed(context, '/partner');
+            break;
+          case 4: // 我的
+            Navigator.pushNamed(context, '/profile');
+            break;
+        }
+      },
+      items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: '首页'),
+        BottomNavigationBarItem(icon: Icon(Icons.favorite), label: '健康'),
+        BottomNavigationBarItem(icon: Icon(Icons.star), label: '运势'),
+        BottomNavigationBarItem(icon: Icon(Icons.people), label: '搭子'),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: '我的'),
+      ],
+    );
+  }
+
+  Widget _buildFloatingActionButton() {
+    return FloatingActionButton(
+      onPressed: () {
+        showModalBottomSheet(
+          context: context,
+          builder: (context) => _buildCreatePostSheet(),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          ),
+        );
+      },
+      backgroundColor: Colors.green,
+      child: Icon(Icons.add),
+      tooltip: '发布动态',
+    );
+  }
+
+  Widget _buildCreatePostSheet() {
+    return Container(
+      padding: EdgeInsets.all(16),
+      height: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '发布动态',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
           ),
           SizedBox(height: 16),
-          GridView.count(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            crossAxisCount: 2,
-            childAspectRatio: 1.5,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
+          Expanded(
+            child: TextField(
+              maxLines: null,
+              decoration: InputDecoration(
+                hintText: '分享你的健康生活...',
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+          Row(
             children: [
-              _buildHealthCard(
-                '步数',
-                '${_healthOverview!['steps'] ?? "0"}',
-                Icons.directions_walk,
+              IconButton(
+                icon: Icon(Icons.image, color: Colors.green),
+                onPressed: () {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text('添加图片功能开发中...')));
+                  Navigator.pop(context);
+                },
               ),
-              _buildHealthCard(
-                '卡路里',
-                '${_healthOverview!['calories'] ?? "0"}',
-                Icons.local_fire_department,
+              IconButton(
+                icon: Icon(Icons.tag, color: Colors.green),
+                onPressed: () {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text('添加标签功能开发中...')));
+                  Navigator.pop(context);
+                },
               ),
-              _buildHealthCard(
-                '心率',
-                '${_healthOverview!['heartRate'] ?? "0 bpm"}',
-                Icons.favorite,
+              IconButton(
+                icon: Icon(Icons.location_on, color: Colors.green),
+                onPressed: () {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text('添加位置功能开发中...')));
+                  Navigator.pop(context);
+                },
               ),
-              _buildHealthCard(
-                '睡眠',
-                '${_healthOverview!['sleep'] ?? "0小时"}',
-                Icons.bedtime,
+              Spacer(),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text('动态发布成功！')));
+                  // 这里可以添加刷新动态列表的逻辑
+                  _loadSocialFeeds();
+                },
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                child: Text('发布'),
               ),
             ],
           ),
         ],
       ),
     );
-  }
-
-  Widget _buildHealthCard(String title, String value, IconData icon) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Icon(icon, size: 28, color: Theme.of(context).primaryColor),
-            SizedBox(height: 8),
-            Text(title),
-            SizedBox(height: 4),
-            Text(
-              value,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSectionTitle(String title, String action) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 24, 16, 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          GestureDetector(
-            onTap: () {
-              // 导航到搭子标签页
-              final MainNavigationScreen? navScreen =
-                  context.findAncestorWidgetOfExactType<MainNavigationScreen>();
-              if (navScreen != null) {
-                final BottomNavigationBar? navBar =
-                    context
-                            .findAncestorWidgetOfExactType<Scaffold>()
-                            ?.bottomNavigationBar
-                        as BottomNavigationBar?;
-                if (navBar != null) {
-                  navBar.onTap!(3); // 搭子标签的索引
-                }
-              }
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: Theme.of(context).primaryColor),
-              ),
-              child: Text(
-                action,
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSocialFeeds() {
-    if (_socialFeeds == null || _socialFeeds!.isEmpty) {
-      return Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Center(child: Text("暂无搭子动态")),
-      );
-    }
-
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount:
-          _socialFeeds!.length > 2 ? 2 : _socialFeeds!.length, // 首页只显示2条动态
-      itemBuilder: (context, index) {
-        final feed = _socialFeeds![index];
-        return Card(
-          margin: const EdgeInsets.only(bottom: 16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // 用户信息行
-                Row(
-                  children: [
-                    CircleAvatar(
-                      backgroundImage:
-                          feed['avatar'] != null
-                              ? NetworkImage(feed['avatar'])
-                              : null,
-                      child: feed['avatar'] == null ? Icon(Icons.person) : null,
-                    ),
-                    SizedBox(width: 12),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          feed['user'] ?? "用户",
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          feed['time'] ?? "刚刚",
-                          style: TextStyle(
-                            color: Colors.grey[600],
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(height: 12),
-                // 内容
-                Text(feed['content'] ?? ""),
-                if (feed['image'] != null) ...[
-                  SizedBox(height: 12),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.network(feed['image']),
-                  ),
-                ],
-                SizedBox(height: 12),
-                // 点赞和评论
-                Row(
-                  children: [
-                    _buildSocialAction(
-                      Icons.favorite_border,
-                      '${feed['likes'] ?? 0}',
-                      '点赞',
-                    ),
-                    SizedBox(width: 16),
-                    _buildSocialAction(
-                      Icons.comment_outlined,
-                      '${feed['comments'] ?? 0}',
-                      '评论',
-                    ),
-                    SizedBox(width: 16),
-                    _buildSocialAction(Icons.share_outlined, '分享', '分享'),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildSocialAction(IconData icon, String text, String action) {
-    return InkWell(
-      onTap: () {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('$action成功')));
-      },
-      child: Row(
-        children: [
-          Icon(icon, size: 18, color: Colors.grey[700]),
-          SizedBox(width: 4),
-          Text(text, style: TextStyle(color: Colors.grey[700])),
-        ],
-      ),
-    );
-  }
-
-  String _getMembershipText() {
-    if (_userProfile == null || !_userProfile!.containsKey('membershipInfo')) {
-      return '普通用户';
-    }
-
-    var membershipInfo = _userProfile!['membershipInfo'];
-    if (membershipInfo == null || membershipInfo is! Map) {
-      return '普通用户';
-    }
-
-    List<String> memberships = [];
-    if (membershipInfo['healthMember'] == true) memberships.add('健康会员');
-    if (membershipInfo['partnerMember'] == true) memberships.add('搭子会员');
-    return memberships.isEmpty ? '普通用户' : memberships.join(' · ');
   }
 }

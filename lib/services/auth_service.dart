@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
-import '../models/user/user_roles.dart'; // 导入用户角色枚举
+import '../models/user/user_roles.dart';
 
 class UserSession {
   final String userId;
@@ -145,22 +145,30 @@ class AuthService extends ChangeNotifier {
 
   // 初始化（从持久化存储恢复会话）
   Future<void> initialize() async {
-    final prefs = await SharedPreferences.getInstance();
-    final sessionData = prefs.getString('userSession');
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final sessionData = prefs.getString('userSession');
 
-    if (sessionData != null) {
-      try {
-        final Map<String, dynamic> json = Map<String, dynamic>.from(
-          jsonDecode(sessionData),
-        );
-        _currentSession = UserSession.fromJson(json);
-        notifyListeners();
+      if (sessionData != null) {
+        try {
+          final Map<String, dynamic> json = Map<String, dynamic>.from(
+            jsonDecode(sessionData),
+          );
+          _currentSession = UserSession.fromJson(json);
+          notifyListeners();
 
-        print('已恢复会话: ${_currentSession.username} (${_currentSession.role})');
-      } catch (e) {
-        print('恢复会话失败: $e');
-        await logout();
+          print('已恢复会话: ${_currentSession.username} (${_currentSession.role})');
+        } catch (e) {
+          print('恢复会话失败: $e');
+          await logout();
+        }
+      } else {
+        // 开发模式：自动登录为taoyonggang
+        await login('taoyonggang', '123456');
+        print('开发模式：自动登录为taoyonggang');
       }
+    } catch (e) {
+      print('初始化认证服务错误: $e');
     }
   }
 

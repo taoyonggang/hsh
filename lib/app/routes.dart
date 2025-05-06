@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
-import '../models/user/user_roles.dart'; // 添加这一行导入
-
 import '../services/permission_service.dart';
+import '../models/user/user_roles.dart';
 
 // 首页相关
 import '../screens/home/home_screen.dart';
@@ -143,6 +142,13 @@ class RoutePermissions {
       UserRole.socialMember,
       UserRole.healthMember,
     ],
+    '/home': [
+      UserRole.guest,
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
     Routes.login: [
       UserRole.guest,
       UserRole.user,
@@ -164,15 +170,14 @@ class RoutePermissions {
       UserRole.socialMember,
       UserRole.healthMember,
     ],
-    Routes.home: [
-      UserRole.guest,
+
+    // 需要正式用户权限
+    '/profile': [
       UserRole.user,
       UserRole.partnerMember,
       UserRole.socialMember,
       UserRole.healthMember,
     ],
-
-    // 需要正式用户权限
     Routes.profileEdit: [
       UserRole.user,
       UserRole.partnerMember,
@@ -186,6 +191,24 @@ class RoutePermissions {
       UserRole.healthMember,
     ],
     Routes.settings: [
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+    '/health': [
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+    '/fortune': [
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+    '/partner': [
       UserRole.user,
       UserRole.partnerMember,
       UserRole.socialMember,
@@ -234,15 +257,22 @@ class RoutePermissions {
 
 // 路由生成器
 class AppRouter {
-  // 当前版本时间：2025-05-06 06:35:00
-  static final DateTime currentTime = DateTime.utc(2025, 5, 6, 6, 35, 0);
-  // 当前登录用户：taoyonggang
+  // 当前系统时间：2025-05-06 07:17:51
+  static final DateTime currentTime = DateTime.utc(2025, 5, 6, 7, 17, 51);
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
     final currentRoute = settings.name ?? '/';
 
-    // 权限检查
+    // 特别处理根路由 '/'
+    if (currentRoute == '/') {
+      return MaterialPageRoute(
+        settings: RouteSettings(name: '/'),
+        builder: (_) => HomeScreen(),
+      );
+    }
+
+    // 权限检查（除了首页等公共页面外的页面）
     if (!_isAuthRoute(currentRoute) &&
         !RoutePermissions.canAccess(currentRoute)) {
       // 如果未登录，跳转登录页
@@ -287,7 +317,14 @@ class AppRouter {
       case Routes.forgotPassword:
         return MaterialPageRoute(builder: (_) => ForgotPasswordScreen());
 
+      // 首页相关
+      case Routes.home:
+      case '/':
+        return MaterialPageRoute(builder: (_) => HomeScreen());
+
       // 个人资料相关
+      case '/profile':
+        return MaterialPageRoute(builder: (_) => ProfileScreen());
       case Routes.profileEdit:
         return MaterialPageRoute(builder: (_) => ProfileEditScreen());
 
@@ -390,16 +427,22 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => PrivacyPolicyScreen());
 
       // 健康相关
+      case '/health':
+        return MaterialPageRoute(builder: (_) => HealthScreen());
       case Routes.healthData:
         return MaterialPageRoute(builder: (_) => HealthDataScreen());
       case Routes.healthReport:
         return MaterialPageRoute(builder: (_) => HealthReportScreen());
 
       // 运势相关
+      case '/fortune':
+        return MaterialPageRoute(builder: (_) => FortuneScreen());
       case Routes.fortuneDetail:
         return MaterialPageRoute(builder: (_) => FortuneDetailScreen());
 
       // 搭子相关
+      case '/partner':
+        return MaterialPageRoute(builder: (_) => PartnerScreen());
       case Routes.partnerDetail:
         if (args is String) {
           return MaterialPageRoute(
@@ -429,7 +472,9 @@ class AppRouter {
     // 认证相关页面无需权限检查
     return route == Routes.login ||
         route == Routes.register ||
-        route == Routes.forgotPassword;
+        route == Routes.forgotPassword ||
+        route == '/' ||
+        route == '/home';
   }
 
   // 获取路由所需会员类型

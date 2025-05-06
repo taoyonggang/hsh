@@ -66,6 +66,7 @@ flutter:
     - assets/data/partner/    
     - assets/data/health/
     - assets/data/fortune/
+    - assets/data/social/
     - assets/data/users/current_user/
     - assets/data/users/current_user/messages/
     - assets/data/
