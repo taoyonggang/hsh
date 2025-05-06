@@ -4,7 +4,13 @@ class FeatureChart extends StatelessWidget {
   final Map<String, double> data;
   final String title;
 
-  const FeatureChart({super.key, required this.data, required this.title});
+  const FeatureChart({
+    super.key,
+    required this.data,
+    required this.title,
+    required Map<String, dynamic> realData,
+    required Map<String, dynamic> virtualData,
+  });
 
   @override
   Widget build(BuildContext context) {
