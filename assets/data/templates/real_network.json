@@ -1,0 +1,13 @@
+{
+  "networkType": "real",
+  "nodes": [
+    {
+      "id": "",
+      "name": "",
+      "avatarUrl": null,
+      "relationshipType": "self",
+      "isMapped": true
+    }
+  ],
+  "connections": []
+}

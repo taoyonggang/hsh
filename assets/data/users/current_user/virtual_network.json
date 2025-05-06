@@ -1,0 +1,151 @@
+{
+  "networkType": "virtual",
+  "nodes": [
+    {
+      "id": "vuser000",
+      "name": "taoyonggang",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/32.jpg",
+      "relationshipType": "self",
+      "isMapped": true,
+      "mappedUserId": "user123",
+      "attributes": {
+        "tags": ["自己", "程序员"]
+      }
+    },
+    {
+      "id": "vuser001",
+      "name": "李明",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/45.jpg",
+      "relationshipType": "friend",
+      "isMapped": true,
+      "mappedUserId": "user456",
+      "attributes": {
+        "tags": ["好友", "大学同学", "篮球"]
+      }
+    },
+    {
+      "id": "vuser002",
+      "name": "张华",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/54.jpg",
+      "relationshipType": "family",
+      "isMapped": false,
+      "attributes": {
+        "tags": ["表哥", "亲戚"]
+      }
+    },
+    {
+      "id": "vuser003",
+      "name": "张伟",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/67.jpg",
+      "relationshipType": "partner",
+      "isMapped": true,
+      "mappedUserId": "user234",
+      "attributes": {
+        "tags": ["搭子", "健身"]
+      }
+    },
+    {
+      "id": "vuser004",
+      "name": "刘芳",
+      "avatarUrl": "https://randomuser.me/api/portraits/women/33.jpg",
+      "relationshipType": "family",
+      "isMapped": false,
+      "attributes": {
+        "tags": ["表妹", "亲戚"]
+      }
+    },
+    {
+      "id": "vuser005",
+      "name": "王强",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/22.jpg",
+      "relationshipType": "colleague",
+      "isMapped": false,
+      "attributes": {
+        "tags": ["同事", "项目组"]
+      }
+    },
+    {
+      "id": "vuser006",
+      "name": "李军",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/36.jpg",
+      "relationshipType": "friend",
+      "isMapped": false,
+      "attributes": {
+        "tags": ["朋友", "高中同学"]
+      }
+    },
+    {
+      "id": "vuser007",
+      "name": "赵雪",
+      "avatarUrl": "https://randomuser.me/api/portraits/women/32.jpg",
+      "relationshipType": "colleague",
+      "isMapped": true,
+      "mappedUserId": "user678",
+      "attributes": {
+        "tags": ["同事", "市场部"]
+      }
+    }
+  ],
+  "connections": [
+    {
+      "sourceId": "vuser000",
+      "targetId": "vuser001",
+      "relationshipType": "friend",
+      "strength": 0.9
+    },
+    {
+      "sourceId": "vuser000",
+      "targetId": "vuser002",
+      "relationshipType": "family",
+      "strength": 0.7
+    },
+    {
+      "sourceId": "vuser000",
+      "targetId": "vuser003",
+      "relationshipType": "partner",
+      "strength": 0.8
+    },
+    {
+      "sourceId": "vuser000",
+      "targetId": "vuser004",
+      "relationshipType": "family",
+      "strength": 0.6
+    },
+    {
+      "sourceId": "vuser000",
+      "targetId": "vuser005",
+      "relationshipType": "colleague",
+      "strength": 0.5
+    },
+    {
+      "sourceId": "vuser000",
+      "targetId": "vuser006",
+      "relationshipType": "friend",
+      "strength": 0.6
+    },
+    {
+      "sourceId": "vuser000",
+      "targetId": "vuser007",
+      "relationshipType": "colleague",
+      "strength": 0.4
+    },
+    {
+      "sourceId": "vuser001",
+      "targetId": "vuser003",
+      "relationshipType": "friend",
+      "strength": 0.3
+    },
+    {
+      "sourceId": "vuser002",
+      "targetId": "vuser004",
+      "relationshipType": "family",
+      "strength": 0.8
+    },
+    {
+      "sourceId": "vuser005",
+      "targetId": "vuser007",
+      "relationshipType": "colleague",
+      "strength": 0.7
+    }
+  ]
+}

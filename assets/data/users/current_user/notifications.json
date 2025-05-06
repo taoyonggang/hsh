@@ -1,0 +1,61 @@
+[
+  {
+    "id": "notif001",
+    "title": "会员特权更新",
+    "content": "尊敬的社交会员，您现在可以使用网络对比分析功能了！",
+    "type": "membership",
+    "timestamp": "2025-04-29T08:00:00Z",
+    "isRead": false,
+    "data": {
+      "actionUrl": "/network/compare"
+    }
+  },
+  {
+    "id": "notif002",
+    "title": "活动提醒",
+    "content": "您报名的「周末登山活动」将于明天上午9点开始",
+    "type": "activity",
+    "timestamp": "2025-04-28T18:30:00Z",
+    "isRead": false,
+    "data": {
+      "activityId": "act001",
+      "actionUrl": "/activity/detail?id=act001"
+    }
+  },
+  {
+    "id": "notif003",
+    "title": "被映射请求",
+    "content": "张伟请求将您映射到他的虚拟关系网络中",
+    "type": "mapping",
+    "timestamp": "2025-04-28T14:15:30Z",
+    "isRead": true,
+    "data": {
+      "userId": "user234",
+      "actionUrl": "/privacy/mappings"
+    }
+  },
+  {
+    "id": "notif004",
+    "title": "数据授权请求",
+    "content": "李明请求访问您的基础活动数据",
+    "type": "authorization",
+    "timestamp": "2025-04-27T16:45:12Z",
+    "isRead": true,
+    "data": {
+      "userId": "user456",
+      "authorizationId": "auth123",
+      "actionUrl": "/privacy/authorizations"
+    }
+  },
+  {
+    "id": "notif005",
+    "title": "系统通知",
+    "content": "系统维护已完成，新功能已上线",
+    "type": "system",
+    "timestamp": "2025-04-26T22:10:45Z",
+    "isRead": false,
+    "data": {
+      "actionUrl": "/whatsnew"
+    }
+  }
+]

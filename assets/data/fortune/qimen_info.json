@@ -1,0 +1,44 @@
+{
+    "formationTime": "2025-04-21T13:51:22Z",
+    "jieQi": "谷雨",
+    "yuanKong": "辛壬",
+    "palaces": [
+      {
+        "number": 1,
+        "door": "休门",
+        "star": "天蓬",
+        "god": "值符",
+        "heavenlyStem": "戊",
+        "earthlyStem": "戊",
+        "trigram": "坎",
+        "analysis": "宜静思考，忌仓促行动"
+      },
+      {
+        "number": 2,
+        "door": "死门",
+        "star": "天芮",
+        "god": "腾蛇",
+        "heavenlyStem": "己",
+        "earthlyStem": "己",
+        "trigram": "坤",
+        "analysis": "谨慎决策，防小人暗算"
+      }
+    ],
+    "directions": {
+      "东": "吉，宜出行",
+      "南": "中，平常心对待",
+      "西": "凶，避免前往",
+      "北": "大吉，有贵人相助",
+      "东南": "中吉，可小心行事",
+      "西南": "小凶，慎重为上",
+      "东北": "大吉，宜谋事",
+      "西北": "凶，不宜远行"
+    },
+    "timeTrends": [
+      "上午时分利于社交活动",
+      "午后宜保持低调行事",
+      "傍晚后转为有利时段"
+    ],
+    "baziCompatibility": "奇门格局与八字中的火元素相生，利于创新发展",
+    "isPremiumDetail": true
+  }

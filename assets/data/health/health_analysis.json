@@ -1,0 +1,96 @@
+{
+    "analysisDate": "2025-04-21",
+    "overallStatus": "总体健康状况良好，体质偏热",
+    "healthScore": 78,
+    "insights": [
+      {
+        "category": "体重管理",
+        "description": "您的BMI值处于健康范围，体重管理良好",
+        "trendDirection": "持平"
+      },
+      {
+        "category": "活动水平",
+        "description": "您的日常活动量高于平均水平，但仍有提升空间",
+        "trendDirection": "上升"
+      },
+      {
+        "category": "休息质量",
+        "description": "您的睡眠质量近期有所下降，可能与压力增加有关",
+        "trendDirection": "下降"
+      },
+      {
+        "category": "五行平衡",
+        "description": "您的五行中，火土较旺，水木相对不足，建议增加相应调节",
+        "trendDirection": "持平"
+      }
+    ],
+    "recommendations": [
+      {
+        "category": "饮食建议",
+        "recommendation": "根据您体质偏热的特点，建议增加清凉食物，如西瓜、绿豆等，减少辛辣刺激食物",
+        "urgency": "中",
+        "isPremiumOnly": false
+      },
+      {
+        "category": "运动建议",
+        "recommendation": "每周至少进行150分钟中等强度有氧运动，如快走、游泳等",
+        "urgency": "低",
+        "isPremiumOnly": false
+      },
+      {
+        "category": "睡眠改善",
+        "recommendation": "尝试在睡前一小时避免使用电子设备，创建安静舒适的睡眠环境",
+        "urgency": "中",
+        "isPremiumOnly": false
+      },
+      {
+        "category": "五行调节",
+        "recommendation": "根据八字分析，您需要增加水木能量，建议多接触水流环境、绿色植物，着装可增加蓝色、绿色系",
+        "urgency": "中",
+        "isPremiumOnly": true
+      },
+      {
+        "category": "情绪管理",
+        "recommendation": "每日进行10-15分钟冥想或深呼吸，有助于平衡过旺的火气",
+        "urgency": "高",
+        "isPremiumOnly": true
+      }
+    ],
+    "risks": [
+      {
+        "riskFactor": "血压波动",
+        "description": "您的血压记录显示有轻微波动趋势，虽然目前在正常范围，但需要关注",
+        "severity": "低",
+        "preventiveMeasures": [
+          "减少高盐食物摄入",
+          "保持规律作息",
+          "避免过度紧张和压力"
+        ],
+        "isPremiumOnly": false
+      },
+      {
+        "riskFactor": "久坐风险",
+        "description": "您的日常活动记录显示久坐时间较长，可能增加心血管疾病风险",
+        "severity": "中",
+        "preventiveMeasures": [
+          "每工作1小时起身活动5-10分钟",
+          "增加日常步行量",
+          "使用站立式办公桌"
+        ],
+        "isPremiumOnly": false
+      },
+      {
+        "riskFactor": "阴虚火旺",
+        "description": "根据八字分析，您有阴虚火旺的体质特点，易导致口干、烦躁、失眠等",
+        "severity": "中",
+        "preventiveMeasures": [
+          "饮食多选用滋阴清热食物",
+          "避免熬夜和过度劳累",
+          "适当增加水分摄入",
+          "尝试太极等柔和运动平衡阴阳"
+        ],
+        "isPremiumOnly": true
+      }
+    ],
+    "isPremiumReport": false
+  }

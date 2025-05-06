@@ -1,0 +1,155 @@
+[
+    {
+      "sleep": {
+        "bedTime": "22:30",
+        "wakeUpTime": "06:30",
+        "sleepDurationMinutes": 480,
+        "sleepQualityRating": 4,
+        "sleepNotes": "睡眠质量不错，中间醒来一次"
+      },
+      "meals": [
+        {
+          "mealType": "早餐",
+          "time": "07:00",
+          "description": "全麦面包、牛奶、水煮蛋、香蕉",
+          "imageUrl": null,
+          "foodCategories": ["全谷物", "蛋白质", "水果"],
+          "calories": 420
+        },
+        {
+          "mealType": "午餐",
+          "time": "12:30",
+          "description": "糙米饭、清炒西兰花、红烧带鱼",
+          "imageUrl": null,
+          "foodCategories": ["主食", "蔬菜", "鱼类"],
+          "calories": 580
+        },
+        {
+          "mealType": "晚餐",
+          "time": "18:30",
+          "description": "菌菇汤、玉米、烤鸡胸肉",
+          "imageUrl": null,
+          "foodCategories": ["蛋白质", "蔬菜", "粗粮"],
+          "calories": 450
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseType": "快走",
+          "durationMinutes": 30,
+          "intensity": "中",
+          "caloriesBurned": 180,
+          "time": "07:30"
+        },
+        {
+          "exerciseType": "哑铃训练",
+          "durationMinutes": 20,
+          "intensity": "高",
+          "caloriesBurned": 160,
+          "time": "17:30"
+        }
+      ],
+      "mood": {
+        "mood": "积极",
+        "moodRating": 4,
+        "notes": "今天工作顺利，心情不错"
+      },
+      "waterIntake": {
+        "cups": 8,
+        "totalMl": 1600,
+        "drinkTimes": ["07:30", "09:45", "11:30", "13:15", "15:00", "17:30", "19:45", "21:00"]
+      },
+      "bowelMovement": {
+        "time": "07:15",
+        "type": "正常",
+        "color": "正常",
+        "notes": "状态良好"
+      },
+      "sedentaryMinutes": 360,
+      "socialActivity": {
+        "activityType": "朋友聚餐",
+        "durationMinutes": 120,
+        "peopleCount": 4,
+        "notes": "与老朋友小聚，聊得很开心"
+      },
+      "recordDate": "2025-04-20"
+    },
+    {
+      "sleep": {
+        "bedTime": "23:00",
+        "wakeUpTime": "06:45",
+        "sleepDurationMinutes": 465,
+        "sleepQualityRating": 3,
+        "sleepNotes": "睡眠质量一般，有点失眠"
+      },
+      "meals": [
+        {
+          "mealType": "早餐",
+          "time": "07:15",
+          "description": "燕麦粥、酸奶、蓝莓",
+          "imageUrl": null,
+          "foodCategories": ["全谷物", "乳制品", "水果"],
+          "calories": 380
+        },
+        {
+          "mealType": "午餐",
+          "time": "12:45",
+          "description": "米饭、番茄炒蛋、清炒菠菜",
+          "imageUrl": null,
+          "foodCategories": ["主食", "蛋白质", "绿叶蔬菜"],
+          "calories": 550
+        },
+        {
+          "mealType": "加餐",
+          "time": "15:30",
+          "description": "杏仁、苹果",
+          "imageUrl": null,
+          "foodCategories": ["坚果", "水果"],
+          "calories": 180
+        },
+        {
+          "mealType": "晚餐",
+          "time": "19:00",
+          "description": "藜麦沙拉、烤三文鱼",
+          "imageUrl": null,
+          "foodCategories": ["粗粮", "鱼类", "蔬菜"],
+          "calories": 480
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseType": "瑜伽",
+          "durationMinutes": 45,
+          "intensity": "中",
+          "caloriesBurned": 180,
+          "time": "06:50"
+        },
+        {
+          "exerciseType": "散步",
+          "durationMinutes": 25,
+          "intensity": "低",
+          "caloriesBurned": 120,
+          "time": "19:40"
+        }
+      ],
+      "mood": {
+        "mood": "平静",
+        "moodRating": 3,
+        "notes": "今天比较忙碌，但心情平稳"
+      },
+      "waterIntake": {
+        "cups": 7,
+        "totalMl": 1400,
+        "drinkTimes": ["07:20", "09:30", "11:50", "13:45", "15:50", "18:15", "20:00"]
+      },
+      "bowelMovement": {
+        "time": "08:00",
+        "type": "偏硬",
+        "color": "正常",
+        "notes": "可能水分摄入不足"
+      },
+      "sedentaryMinutes": 420,
+      "socialActivity": null,
+      "recordDate": "2025-04-21"
+    }
+  ]

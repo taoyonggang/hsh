@@ -1,0 +1,40 @@
+[
+  {
+    "id": "map001",
+    "mapper": {
+      "id": "user234",
+      "name": "张伟",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/67.jpg"
+    },
+    "virtualUserId": "vfriend001",
+    "virtualUserName": "taoyonggang",
+    "createdDate": "2025-04-28T14:15:30Z",
+    "isApproved": true,
+    "approvalDate": "2025-04-28T14:35:10Z"
+  },
+  {
+    "id": "map002",
+    "mapper": {
+      "id": "user789",
+      "name": "王芳",
+      "avatarUrl": "https://randomuser.me/api/portraits/women/22.jpg"
+    },
+    "virtualUserId": "vcolleague003",
+    "virtualUserName": "taoyonggang",
+    "createdDate": "2025-04-29T11:05:22Z",
+    "isApproved": false
+  },
+  {
+    "id": "map003",
+    "mapper": {
+      "id": "user678",
+      "name": "赵雪",
+      "avatarUrl": "https://randomuser.me/api/portraits/women/32.jpg"
+    },
+    "virtualUserId": "vuser008",
+    "virtualUserName": "taoyonggang",
+    "createdDate": "2025-04-26T09:45:30Z",
+    "isApproved": true,
+    "approvalDate": "2025-04-26T10:15:45Z"
+  }
+]

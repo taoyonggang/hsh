@@ -1,0 +1,118 @@
+{
+    "userBaziId": "taoyonggang_bazi",
+    "savedRelationships": [
+      {
+        "id": "rel001",
+        "name": "张小凡",
+        "relationship": "商业伙伴",
+        "birthInfo": {
+          "date": "1987-05-22",
+          "time": "14:30",
+          "location": "上海"
+        },
+        "baziComparison": {
+          "compatibility": 82,
+          "elementInteraction": "互补",
+          "dayMasterRelation": "火生土，关系顺畅",
+          "keyStrengths": [
+            "思维模式互补",
+            "能力领域互补",
+            "沟通方式协调"
+          ],
+          "keyChallenges": [
+            "决策风格差异较大",
+            "压力处理方式不同"
+          ],
+          "cooperationAdvice": [
+            "合作分工明确，发挥各自优势",
+            "重要决策共同参与，互相补充",
+            "保持开放沟通，避免隐藏不满"
+          ]
+        }
+      },
+      {
+        "id": "rel002",
+        "name": "李梅",
+        "relationship": "朋友",
+        "birthInfo": {
+          "date": "1983-10-15",
+          "time": "06:20",
+          "location": "广州"
+        },
+        "baziComparison": {
+          "compatibility": 75,
+          "elementInteraction": "生克交替",
+          "dayMasterRelation": "金克木，有挑战但可互助",
+          "keyStrengths": [
+            "性格互补性强",
+            "共同兴趣爱好多",
+            "价值观基本一致"
+          ],
+          "keyChallenges": [
+            "情绪表达方式差异",
+            "对问题解决角度不同",
+            "期望值有时不匹配"
+          ],
+          "friendshipAdvice": [
+            "尊重彼此差异，欣赏互补特点",
+            "坦诚交流，避免猜测对方想法",
+            "共同活动中找到平衡点"
+          ]
+        }
+      }
+    ],
+    "qimenRelationshipAnalysis": {
+      "currentRelationshipFocus": [
+        {
+          "type": "职场关系",
+          "direction": "东南",
+          "palace": "巽宫",
+          "analysis": "近期职场人际关系有所波动，领导关系需要维护，同事间可能有小摩擦。建议保持低调，专注工作表现。"
+        },
+        {
+          "type": "家庭关系",
+          "direction": "北方",
+          "palace": "坎宫",
+          "analysis": "家庭关系和谐，尤其与长辈关系改善。适合近期安排家庭聚会或与家人共同活动，增进情感交流。"
+        },
+        {
+          "type": "社交关系",
+          "direction": "西方",
+          "palace": "兑宫",
+          "analysis": "社交运势良好，有机会结识有影响力的人士，建议积极参加社交活动，扩展人脉网络。"
+        }
+      ],
+      "relationshipDevelopmentTiming": [
+        {
+          "period": "近一个月",
+          "focus": "维护现有关系为主，处理积压的人际问题"
+        },
+        {
+          "period": "近三个月",
+          "focus": "可主动发展新的人脉关系，尤其在专业领域"
+        },
+        {
+          "period": "近半年",
+          "focus": "深化重要关系，淡化无效社交，提高人际质量"
+        }
+      ]
+    },
+    "premiumRelationshipFeatures": {
+      "availableForPremium": true,
+      "deepAnalysis": {
+        "conflictResolutionPatterns": "倾向于逃避初期冲突，但会在关系紧张时寻求沟通解决",
+        "emotionalConnectionDepth": "情感连接深度中等，需要更多实质性交流来加强",
+        "trustBuildingFactors": "诚信和一致性是建立信任的关键，避免承诺过多而兑现不足"
+      },
+      "relationshipDynamics": {
+        "powerBalance": "在专业领域倾向于主导，在情感层面倾向于平等",
+        "communicationStyle": "直接但有时缺乏情感表达，可能造成误解",
+        "boundaryIssues": "工作与生活边界模糊，需要更清晰的界限设定"
+      },
+      "developmentPathways": [
+        "提升情感表达能力将显著增强人际关系深度",
+        "学习接受建设性反馈，而非视为批评",
+        "平衡给予与接受，避免关系中的单向投入"
+      ]
+    }
+  }

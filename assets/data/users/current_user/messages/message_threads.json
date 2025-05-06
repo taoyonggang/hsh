@@ -1,0 +1,108 @@
+[
+  {
+    "id": "thread001",
+    "threadType": "direct",
+    "title": "李明",
+    "participants": [
+      {
+        "id": "user123",
+        "name": "taoyonggang",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/32.jpg"
+      },
+      {
+        "id": "user456",
+        "name": "李明",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/45.jpg"
+      }
+    ],
+    "lastMessage": {
+      "id": "msg123",
+      "threadId": "thread001",
+      "sender": {
+        "id": "user456",
+        "name": "李明",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/45.jpg"
+      },
+      "content": "好的，那我们周末见面时再聊",
+      "timestamp": "2025-04-29T10:23:45Z",
+      "messageType": "text",
+      "isRead": false
+    },
+    "unreadCount": 3,
+    "updatedAt": "2025-04-29T10:23:45Z"
+  },
+  {
+    "id": "thread002",
+    "threadType": "direct",
+    "title": "张伟",
+    "participants": [
+      {
+        "id": "user123",
+        "name": "taoyonggang",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/32.jpg"
+      },
+      {
+        "id": "user234",
+        "name": "张伟",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/67.jpg"
+      }
+    ],
+    "lastMessage": {
+      "id": "msg456",
+      "threadId": "thread002",
+      "sender": {
+        "id": "user123",
+        "name": "taoyonggang",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/32.jpg"
+      },
+      "content": "我已经预约好了场地，记得带上装备",
+      "timestamp": "2025-04-28T19:45:23Z",
+      "messageType": "text",
+      "isRead": true
+    },
+    "unreadCount": 0,
+    "updatedAt": "2025-04-28T19:45:23Z"
+  },
+  {
+    "id": "thread003",
+    "threadType": "group",
+    "title": "周末登山小组",
+    "participants": [
+      {
+        "id": "user123",
+        "name": "taoyonggang",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/32.jpg"
+      },
+      {
+        "id": "user234",
+        "name": "张伟",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/67.jpg"
+      },
+      {
+        "id": "user456",
+        "name": "李明",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/45.jpg"
+      },
+      {
+        "id": "user567",
+        "name": "陈思",
+        "avatarUrl": "https://randomuser.me/api/portraits/women/45.jpg"
+      }
+    ],
+    "lastMessage": {
+      "id": "msg789",
+      "threadId": "thread003",
+      "sender": {
+        "id": "user567",
+        "name": "陈思",
+        "avatarUrl": "https://randomuser.me/api/portraits/women/45.jpg"
+      },
+      "content": "我准备了一些能量棒和水，大家需要带什么？",
+      "timestamp": "2025-04-29T08:15:30Z",
+      "messageType": "text",
+      "isRead": false
+    },
+    "unreadCount": 5,
+    "updatedAt": "2025-04-29T08:15:30Z"
+  }
+]

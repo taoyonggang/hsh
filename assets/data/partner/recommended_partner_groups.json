@@ -1,0 +1,41 @@
+[
+  {
+    "id": "group4",
+    "name": "书香茶会",
+    "description": "每周组织读书分享会，交流阅读心得，品味人生百态。在茶香书香中，感受文字的魅力。",
+    "coverImageUrl": "https://picsum.photos/seed/book/800/400",
+    "tags": ["读书", "茶艺", "文化"],
+    "isPrivate": false,
+    "requiresApproval": true,
+    "creationDate": "2025-01-05",
+    "memberCount": 32,
+    "activityCount": 16,
+    "isActive": true
+  },
+  {
+    "id": "group5",
+    "name": "健康生活",
+    "description": "关注健康生活方式，包括健身、瑜伽、营养学等内容。定期举办各种健康相关的活动和讲座。",
+    "coverImageUrl": "https://picsum.photos/seed/health/800/400",
+    "tags": ["健身", "瑜伽", "养生"],
+    "isPrivate": false,
+    "requiresApproval": true,
+    "creationDate": "2025-02-18",
+    "memberCount": 24,
+    "activityCount": 8,
+    "isActive": true
+  },
+  {
+    "id": "group6",
+    "name": "古风汉服",
+    "description": "热爱传统文化和汉服的朋友们的聚集地，一起学习传统礼仪、组织汉服活动，感受华夏文明之美。",
+    "coverImageUrl": "https://picsum.photos/seed/hanfu/800/400",
+    "tags": ["汉服", "传统文化", "古风"],
+    "isPrivate": false,
+    "requiresApproval": false,
+    "creationDate": "2025-03-01",
+    "memberCount": 18,
+    "activityCount": 6,
+    "isActive": true
+  }
+]

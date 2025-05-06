@@ -1,0 +1,70 @@
+{
+    "userInfo": {
+      "name": "taoyonggang",
+      "gender": "male",
+      "birthDate": "1985-08-12",
+      "birthTime": "09:45",
+      "birthLocation": "北京",
+      "lunarDate": "乙丑年六月廿六 未时"
+    },
+    "baziInfo": {
+      "year": {
+        "heavenlyStem": "乙",
+        "earthlyBranch": "丑",
+        "hiddenStems": ["己", "辛", "癸"],
+        "element": "木"
+      },
+      "month": {
+        "heavenlyStem": "庚",
+        "earthlyBranch": "申",
+        "hiddenStems": ["庚", "壬", "戊"],
+        "element": "金"
+      },
+      "day": {
+        "heavenlyStem": "丙",
+        "earthlyBranch": "午",
+        "hiddenStems": ["丙", "戊", "己"],
+        "element": "火"
+      },
+      "hour": {
+        "heavenlyStem": "丁",
+        "earthlyBranch": "未",
+        "hiddenStems": ["己", "丁", "乙"],
+        "element": "火"
+      }
+    },
+    "elementDistribution": {
+      "wood": 2,
+      "fire": 3,
+      "earth": 5,
+      "metal": 4,
+      "water": 2
+    },
+    "analysis": {
+      "lifeMaster": "丙火日元",
+      "favorableElements": ["木", "火"],
+      "unfavorableElements": ["水", "金"],
+      "neutralElements": ["土"],
+      "strength": "偏强",
+      "personalityTraits": [
+        "热情开朗，积极向上",
+        "领导力强，行动力佳",
+        "创造力丰富，善于表达",
+        "有时急躁，缺乏耐性",
+        "在压力下容易情绪化"
+      ],
+      "lifePatternKeywords": ["领导", "创新", "表达", "艺术", "管理"],
+      "careerGuidance": [
+        "适合领导角色或创业",
+        "创意产业、管理咨询",
+        "营销、公关、演讲",
+        "需要避免过度竞争的环境"
+      ],
+      "healthFocus": [
+        "注意心脏、血压健康",
+        "避免情绪过度激动",
+        "保持规律作息，避免熬夜",
+        "夏季特别注意防暑降温"
+      ]
+    }
+  }

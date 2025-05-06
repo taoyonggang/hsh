@@ -1,0 +1,36 @@
+[
+  {
+    "id": "p003",
+    "name": "摄影爱好者",
+    "description": "热爱摄影的朋友们一起交流技术，外出拍摄",
+    "coverImage": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32",
+    "members": [
+      {
+        "id": "u006",
+        "name": "周明",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/85.jpg",
+        "role": "管理员"
+      },
+      {
+        "id": "u003",
+        "name": "张伟",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/62.jpg"
+      }
+    ],
+    "memberCount": 8,
+    "createdTime": "2025-01-10",
+    "upcomingActivities": [
+      {
+        "id": "a003",
+        "title": "故宫摄影专场",
+        "description": "一起去故宫拍摄古建筑和文物，交流摄影技巧和构图方法。我们将在清晨入场，利用最佳的光线条件进行拍摄。请携带您的相机和三脚架，我们会有专业摄影师提供指导。",
+        "time": "2025-05-06 07:30",
+        "location": "故宫博物院东门",
+        "participants": 6,
+        "image": "https://images.unsplash.com/photo-1548013146-72479768bca5",
+        "type": "文化",
+        "tags": ["摄影", "文化", "古建筑"]
+      }
+    ]
+  }
+]

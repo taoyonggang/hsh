@@ -1,0 +1,18 @@
+[
+    {
+      "height": 175.0,
+      "weight": 70.0,
+      "waistCircumference": 80.0,
+      "bodyFatPercentage": 15.0,
+      "bmi": 22.9,
+      "recordDate": "2025-04-15"
+    },
+    {
+      "height": 175.0,
+      "weight": 69.5,
+      "waistCircumference": 79.5,
+      "bodyFatPercentage": 14.8,
+      "bmi": 22.7,
+      "recordDate": "2025-04-21"
+    }
+  ]

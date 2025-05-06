@@ -1,0 +1,34 @@
+{
+    "currentUser": "taoyonggang",
+    "currentDate": "2025-04-21",
+    "dailyFortune": {
+      "overallLuck": 85,
+      "career": 78,
+      "wealth": 82,
+      "health": 88,
+      "relationship": 75,
+      "analysis": "今日五行偏木旺，对个人创意思维有利，适合构思规划、表达沟通。事业上可能有新突破，关键是保持开放心态。",
+      "favorableTimes": ["09:00-11:00", "15:00-17:00"],
+      "unfavorableTimes": ["13:00-15:00", "21:00-23:00"],
+      "favorableDirections": ["东", "南"],
+      "suggestions": [
+        "可主动出击，争取表现机会",
+        "财运不错，但避免大额非必要支出",
+        "注意休息，不要过度透支精力",
+        "与长辈沟通可获得有用建议"
+      ]
+    },
+    "monthlyFortune": {
+      "overallTrend": "本月处于上升期，整体运势明显好转，特别是事业和财富方面表现突出。",
+      "keyDates": [
+        {"date": "2025-04-25", "event": "贵人相助日，适合社交与合作"},
+        {"date": "2025-05-03", "event": "财运高峰，适合投资与收益"},
+        {"date": "2025-05-12", "event": "小心健康波动，注意休息"}
+      ],
+      "focusAreas": [
+        "工作中承担更多责任可获得认可",
+        "投资方面宜稳健，不宜激进冒险",
+        "感情上需要主动经营，避免忽视"
+      ]
+    }
+  }

@@ -1,0 +1,51 @@
+[
+    {
+      "id": "REP001",
+      "title": "月度健康概览报告",
+      "date": "2025-04-01",
+      "type": "general",
+      "isPremium": false,
+      "summary": "本月健康状况总体良好，健康评分较上月提升2分。",
+      "details": {
+        "trends": {
+          "weight": -1.2,
+          "bloodPressure": 5,
+          "sleep": 0.5,
+          "steps": -1304
+        },
+        "insights": [
+          "您的睡眠质量近两周有所改善",
+          "血压略有升高，建议控制饮食盐分",
+          "保持规律作息，避免熬夜"
+        ]
+      }
+    },
+    {
+      "id": "REP002",
+      "title": "身体成分分析报告",
+      "date": "2025-03-25",
+      "type": "physical",
+      "isPremium": false
+    },
+    {
+      "id": "REP003",
+      "title": "生活习惯评估报告",
+      "date": "2025-03-20",
+      "type": "lifestyle",
+      "isPremium": false
+    },
+    {
+      "id": "REP004",
+      "title": "健康风险全面评估",
+      "date": "2025-03-15",
+      "type": "risk",
+      "isPremium": true
+    },
+    {
+      "id": "REP005",
+      "title": "专业健康分析报告",
+      "date": "2025-03-10",
+      "type": "health",
+      "isPremium": true
+    }
+  ]

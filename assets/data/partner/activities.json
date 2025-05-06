@@ -1,0 +1,103 @@
+[
+  {
+    "id": "act_001",
+    "title": "周末登山活动",
+    "description": "本周末我们将组织爬香山活动，适合初学者参加。活动全程约3小时，难度适中。请大家准备好运动鞋、水和简单的食物。我们将在山顶野餐，欣赏美丽的城市风景。",
+    "time": "2025-05-04 09:00",
+    "startTime": "2025-05-04 09:00:00",
+    "endTime": "2025-05-04 16:00:00",
+    "location": "香山公园北门",
+    "coverImageUrl": "https://images.unsplash.com/photo-1551632811-561732d1e306",
+    "isOnline": false,
+    "fee": 0.0,
+    "participantCount": 8,
+    "maxParticipants": 20,
+    "isSignUpRequired": true,
+    "type": "户外运动",
+    "tags": ["登山", "户外", "休闲"],
+    "participantsList": [
+      {
+        "id": "u001",
+        "name": "李明",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/32.jpg"
+      },
+      {
+        "id": "u002",
+        "name": "张伟",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/62.jpg"
+      },
+      {
+        "id": "u003",
+        "name": "王芳",
+        "avatarUrl": "https://randomuser.me/api/portraits/women/44.jpg"
+      }
+    ]
+  },
+  {
+    "id": "act_002",
+    "title": "线上读书分享会",
+    "description": "本次读书会我们将分享讨论《人类简史》这本书，欢迎对历史和人文感兴趣的朋友参加。活动通过Zoom进行，请提前准备好相关设备和网络。",
+    "time": "2025-05-05 19:30",
+    "startTime": "2025-05-05 19:30:00",
+    "endTime": "2025-05-05 21:30:00",
+    "location": "Zoom线上会议 (会议号将提前发送)",
+    "coverImageUrl": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c",
+    "isOnline": true,
+    "fee": 0.0,
+    "participantCount": 12,
+    "maxParticipants": 30,
+    "isSignUpRequired": true,
+    "type": "读书会",
+    "tags": ["读书", "线上", "分享"],
+    "participantsList": [
+      {
+        "id": "u004",
+        "name": "刘洋",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/10.jpg"
+      },
+      {
+        "id": "u005",
+        "name": "赵雪",
+        "avatarUrl": "https://randomuser.me/api/portraits/women/22.jpg"
+      }
+    ]
+  },
+  {
+    "id": "act_003",
+    "title": "咖啡品鉴会",
+    "description": "一起品尝各国优质咖啡豆，了解咖啡的制作工艺和品鉴方法。现场有专业咖啡师指导，适合对咖啡感兴趣的朋友。",
+    "time": "2025-05-10 14:00",
+    "startTime": "2025-05-10 14:00:00",
+    "endTime": "2025-05-10 16:30:00",
+    "location": "星光咖啡馆 (朝阳区建国路88号)",
+    "coverImageUrl": "https://images.unsplash.com/photo-1509042239860-f550ce710b93",
+    "isOnline": false,
+    "fee": 68.0,
+    "participantCount": 6,
+    "maxParticipants": 12,
+    "isSignUpRequired": true,
+    "isFull": false,
+    "type": "品鉴",
+    "tags": ["咖啡", "休闲", "社交"],
+    "participantsList": []
+  },
+  {
+    "id": "act_004",
+    "title": "周末桌游聚会",
+    "description": "一起玩桌游，交流互动。本次活动将组织多种类型的桌游，包括策略型、合作型等。欢迎桌游爱好者参加，新手也可以在现场学习游戏规则。",
+    "time": "2025-05-15 13:00",
+    "startTime": "2025-05-15 13:00:00",
+    "endTime": "2025-05-15 18:00:00",
+    "location": "桌游空间 (海淀区五道口华清嘉园12号楼底商)",
+    "coverImageUrl": "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd9a",
+    "isOnline": false,
+    "fee": 30.0,
+    "participantCount": 8,
+    "maxParticipants": 8,
+    "isSignUpRequired": true,
+    "isFull": true,
+    "type": "桌游",
+    "tags": ["游戏", "娱乐", "社交"],
+    "participantsList": []
+  }
+]

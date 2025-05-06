@@ -1,0 +1,84 @@
+[
+  {
+    "id": "p001",
+    "name": "周末运动小分队",
+    "description": "喜欢运动的朋友们，每周末一起锻炼身体",
+    "coverImage": "https://images.unsplash.com/photo-1552674605-db6ffd4facb5",
+    "members": [
+      {
+        "id": "u001",
+        "name": "李明",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/32.jpg",
+        "role": "管理员"
+      },
+      {
+        "id": "u002",
+        "name": "王芳",
+        "avatarUrl": "https://randomuser.me/api/portraits/women/44.jpg"
+      },
+      {
+        "id": "u003",
+        "name": "张伟",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/62.jpg"
+      },
+      {
+        "id": "u004",
+        "name": "刘洋",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/10.jpg"
+      }
+    ],
+    "memberCount": 4,
+    "createdTime": "2025-03-15",
+    "unreadCount": 5,
+    "upcomingActivities": [
+      {
+        "id": "a001",
+        "title": "周末登山活动",
+        "description": "本周末我们将组织爬香山活动，适合初学者参加。活动全程约3小时，难度适中。请大家准备好运动鞋、水和简单的食物。我们将在山顶野餐，欣赏美丽的城市风景。",
+        "time": "2025-05-04 09:00",
+        "location": "香山公园北门",
+        "participants": 3,
+        "type": "户外运动",
+        "tags": ["登山", "户外", "休闲"]
+      }
+    ]
+  },
+  {
+    "id": "p002",
+    "name": "美食探店",
+    "description": "一起探索城市里的美食，分享美食体验",
+    "coverImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
+    "members": [
+      {
+        "id": "u002",
+        "name": "王芳",
+        "avatarUrl": "https://randomuser.me/api/portraits/women/44.jpg",
+        "role": "管理员"
+      },
+      {
+        "id": "u001",
+        "name": "李明",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/32.jpg"
+      },
+      {
+        "id": "u005",
+        "name": "赵雪",
+        "avatarUrl": "https://randomuser.me/api/portraits/women/22.jpg"
+      }
+    ],
+    "memberCount": 3,
+    "createdTime": "2025-04-02",
+    "upcomingActivities": [
+      {
+        "id": "a002",
+        "title": "日料餐厅品鉴",
+        "description": "在新开的梅花日料餐厅进行美食品鉴，体验正宗的日本料理。本次活动我们将尝试多种特色料理，包括刺身、寿司、天妇罗等。餐厅环境优雅，特别适合拍照分享。",
+        "time": "2025-05-05 18:30",
+        "location": "梅花日料 (王府井店)",
+        "participants": 3,
+        "type": "美食",
+        "tags": ["日料", "晚餐", "社交"]
+      }
+    ]
+  }
+]

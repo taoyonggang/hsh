@@ -1,0 +1,42 @@
+[
+    {
+      "bloodPressure": {
+        "systolic": 122,
+        "diastolic": 78
+      },
+      "heartRate": 68,
+      "bloodSugar": 5.4,
+      "bodyTemperature": 36.5,
+      "recordDate": "2025-04-15"
+    },
+    {
+      "bloodPressure": {
+        "systolic": 118,
+        "diastolic": 76
+      },
+      "heartRate": 72,
+      "bloodSugar": 5.2,
+      "bodyTemperature": 36.6,
+      "recordDate": "2025-04-17"
+    },
+    {
+      "bloodPressure": {
+        "systolic": 125,
+        "diastolic": 80
+      },
+      "heartRate": 70,
+      "bloodSugar": 5.5,
+      "bodyTemperature": 36.4,
+      "recordDate": "2025-04-19"
+    },
+    {
+      "bloodPressure": {
+        "systolic": 120,
+        "diastolic": 75
+      },
+      "heartRate": 65,
+      "bloodSugar": 5.3,
+      "bodyTemperature": 36.5,
+      "recordDate": "2025-04-21"
+    }
+  ]

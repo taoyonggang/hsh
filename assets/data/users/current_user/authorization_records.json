@@ -1,0 +1,41 @@
+[
+  {
+    "id": "auth123",
+    "requestor": {
+      "id": "user456",
+      "name": "李明",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/45.jpg"
+    },
+    "status": "approved",
+    "requestDate": "2025-04-27T16:45:12Z",
+    "responseDate": "2025-04-27T17:30:45Z",
+    "expiryDate": "2025-05-27T17:30:45Z",
+    "dataTypes": ["basic_profile", "activity_history"],
+    "purpose": "合作搭子活动策划"
+  },
+  {
+    "id": "auth124",
+    "requestor": {
+      "id": "user234",
+      "name": "张伟",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/67.jpg"
+    },
+    "status": "pending",
+    "requestDate": "2025-04-29T09:12:33Z",
+    "dataTypes": ["basic_profile", "relationship_graph", "chat_history"],
+    "purpose": "社交网络分析研究"
+  },
+  {
+    "id": "auth125",
+    "requestor": {
+      "id": "user567",
+      "name": "陈思",
+      "avatarUrl": "https://randomuser.me/api/portraits/women/45.jpg"
+    },
+    "status": "denied",
+    "requestDate": "2025-04-25T14:20:15Z",
+    "responseDate": "2025-04-25T15:05:30Z",
+    "dataTypes": ["sensitive_health_data", "location_history"],
+    "purpose": "健康活动推荐"
+  }
+]

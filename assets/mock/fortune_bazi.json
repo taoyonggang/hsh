@@ -1,0 +1,38 @@
+{
+  "userId": "u123456",
+  "yearPillar": {"heavenlyStem": "庚", "earthlyBranch": "午"},
+  "monthPillar": {"heavenlyStem": "己", "earthlyBranch": "丑"},
+  "dayPillar": {"heavenlyStem": "甲", "earthlyBranch": "午"},
+  "hourPillar": {"heavenlyStem": "丙", "earthlyBranch": "申"},
+  "fiveElements": {
+    "wood": 20,
+    "fire": 30,
+    "earth": 25,
+    "metal": 15,
+    "water": 10
+  },
+  "dominantElement": "火",
+  "weakElement": "水",
+  "dayMaster": "甲木",
+  "character": {
+    "strengths": ["创造力强", "善于沟通", "决策果断"],
+    "challenges": ["有时固执", "压力下情绪波动"],
+    "traits": "性格开朗，思维活跃，善于表达，富有创造力"
+  },
+  "lifeAspects": {
+    "career": {
+      "suitable": ["创意行业", "教育培训", "管理咨询"],
+      "suggestions": "适合创意性工作，善于创新和表达，可发展领导才能"
+    },
+    "relationships": {
+      "suitable": ["丁火", "己土", "辛金"],
+      "challenging": ["壬水", "癸水"],
+      "suggestions": "理想伴侣应具备稳定性格，能欣赏您的创造力"
+    },
+    "health": {
+      "strengths": "心血管系统良好，精力充沛",
+      "weaknesses": "肝胆系统需关注，压力管理重要",
+      "suggestions": "注意肝胆保养，规律饮食，适当运动"
+    }
+  }
+}

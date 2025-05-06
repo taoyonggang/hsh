@@ -1,0 +1,92 @@
+[
+  {
+    "id": "activity1",
+    "title": "周末徒步野餐会",
+    "description": "周末一起去城郊森林公园徒步，欣赏春日美景，捕捉自然美好瞬间，之后一起野餐交流。全程约5公里，难度适中，适合所有年龄段的朋友参加。",
+    "coverImageUrl": "https://picsum.photos/seed/hiking/800/400",
+    "startTime": "2025-04-27 10:00:00",
+    "endTime": "2025-04-27 15:00:00",
+    "location": "城市森林公园北门入口集合",
+    "isOnline": false,
+    "maxParticipants": 20,
+    "participantCount": 12,
+    "isSignUpRequired": true,
+    "signUpDeadline": "2025-04-26 20:00:00",
+    "fee": 0,
+    "tags": ["户外", "徒步", "野餐", "摄影"],
+    "organizer": {
+      "id": "current_user",
+      "name": "陶永刚",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/32.jpg",
+      "role": "admin",
+      "joinDate": "2024-12-15T08:30:00.000Z"
+    },
+    "partnerGroup": {
+      "id": "group1",
+      "name": "户外探险家",
+      "coverImageUrl": "https://picsum.photos/seed/outdoor/800/400"
+    },
+    "isFull": false,
+    "hasSignedUp": true
+  },
+  {
+    "id": "activity2",
+    "title": "摄影技巧分享会",
+    "description": "邀请专业摄影师分享人像、风景和街拍的实用技巧，适合各类摄影爱好者。会后有实践环节，请携带您的相机参加。",
+    "coverImageUrl": "https://picsum.photos/seed/camera/800/400",
+    "startTime": "2025-05-10 14:00:00",
+    "endTime": "2025-05-10 17:00:00",
+    "location": "艺术咖啡馆三楼",
+    "isOnline": false,
+    "maxParticipants": 15,
+    "participantCount": 8,
+    "isSignUpRequired": true,
+    "signUpDeadline": "2025-05-09 20:00:00",
+    "fee": 30,
+    "tags": ["摄影", "技巧", "分享"],
+    "organizer": {
+      "id": "user2",
+      "name": "李明",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/22.jpg",
+      "role": "admin",
+      "joinDate": "2025-01-20T10:15:00.000Z"
+    },
+    "partnerGroup": {
+      "id": "group2",
+      "name": "城市摄影",
+      "coverImageUrl": "https://picsum.photos/seed/photo/800/400"
+    },
+    "isFull": false,
+    "hasSignedUp": false
+  },
+  {
+    "id": "activity3",
+    "title": "新店探店：日式料理",
+    "description": "一起体验新开的正宗日式料理店，品尝寿司、刺身、天妇罗等经典美食。店主是日本大厨，拥有20年烹饪经验。",
+    "coverImageUrl": "https://picsum.photos/seed/japanese/800/400",
+    "startTime": "2025-05-05 18:30:00",
+    "endTime": "2025-05-05 21:00:00",
+    "location": "樱花日料（中央商场B1层）",
+    "isOnline": false,
+    "maxParticipants": 10,
+    "participantCount": 10,
+    "isSignUpRequired": true,
+    "signUpDeadline": "2025-05-04 12:00:00",
+    "fee": 150,
+    "tags": ["美食", "日料", "探店"],
+    "organizer": {
+      "id": "user3",
+      "name": "王芳",
+      "avatarUrl": "https://randomuser.me/api/portraits/women/28.jpg",
+      "role": "admin",
+      "joinDate": "2025-02-10T15:45:00.000Z"
+    },
+    "partnerGroup": {
+      "id": "group3",
+      "name": "美食爱好者",
+      "coverImageUrl": "https://picsum.photos/seed/food/800/400"
+    },
+    "isFull": true,
+    "hasSignedUp": true
+  }
+]

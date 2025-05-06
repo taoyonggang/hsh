@@ -1,0 +1,25 @@
+{
+    "year": "乙丑",
+    "month": "丙午",
+    "day": "戊申",
+    "hour": "甲午",
+    "fiveElements": {
+      "木": 2,
+      "火": 3,
+      "土": 1,
+      "金": 2,
+      "水": 0
+    },
+    "mainElement": "火",
+    "favorableElement": "木",
+    "unfavorableElement": "水",
+    "personalities": [
+      "聪明机智",
+      "热情开朗",
+      "创新思维",
+      "善于沟通",
+      "决策果断"
+    ],
+    "destinyType": "偏财格",
+    "isPremiumDetail": false
+  }

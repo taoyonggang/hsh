@@ -1,0 +1,114 @@
+{
+    "currentTime": "2025-04-19 12:57:01",
+    "qimenBasicInfo": {
+      "yuan": "上元",
+      "ju": "阳遁八局",
+      "dayGan": "甲",
+      "hourGan": "辛"
+    },
+    "palaceArrangement": [
+      {
+        "palaceNumber": 1,
+        "position": "坎宫",
+        "door": "休门",
+        "star": "天蓬星",
+        "deity": "值符",
+        "earthlyBranch": "子",
+        "heavenlyStem": "戊"
+      },
+      {
+        "palaceNumber": 2,
+        "position": "坤宫",
+        "door": "生门",
+        "star": "天芮星",
+        "deity": "腾蛇",
+        "earthlyBranch": "丑",
+        "heavenlyStem": "己"
+      },
+      {
+        "palaceNumber": 3,
+        "position": "震宫",
+        "door": "伤门",
+        "star": "天冲星",
+        "deity": "太阴",
+        "earthlyBranch": "寅",
+        "heavenlyStem": "庚"
+      },
+      {
+        "palaceNumber": 4,
+        "position": "巽宫",
+        "door": "杜门",
+        "star": "天辅星",
+        "deity": "六合",
+        "earthlyBranch": "卯",
+        "heavenlyStem": "辛"
+      },
+      {
+        "palaceNumber": 5,
+        "position": "中宫",
+        "door": "",
+        "star": "天禽星",
+        "deity": "",
+        "earthlyBranch": "",
+        "heavenlyStem": "壬"
+      },
+      {
+        "palaceNumber": 6,
+        "position": "乾宫",
+        "door": "景门",
+        "star": "天心星",
+        "deity": "九地",
+        "earthlyBranch": "申",
+        "heavenlyStem": "癸"
+      },
+      {
+        "palaceNumber": 7,
+        "position": "艮宫",
+        "door": "死门",
+        "star": "天柱星",
+        "deity": "九天",
+        "earthlyBranch": "亥",
+        "heavenlyStem": "甲"
+      },
+      {
+        "palaceNumber": 8,
+        "position": "离宫",
+        "door": "惊门",
+        "star": "天任星",
+        "deity": "值使",
+        "earthlyBranch": "午",
+        "heavenlyStem": "乙"
+      },
+      {
+        "palaceNumber": 9,
+        "position": "兑宫",
+        "door": "开门",
+        "star": "天英星",
+        "deity": "玄武",
+        "earthlyBranch": "酉",
+        "heavenlyStem": "丙"
+      }
+    ],
+    "analysis": {
+      "overallSituation": "当前为阳遁八局，值符落坎一宫，主水生数，整体形势较为流动变化",
+      "favorableDirections": ["东南", "南", "西北"],
+      "unfavorableDirections": ["东北", "西", "西南"],
+      "favorableActivities": ["沟通协作", "学习进修", "策划构思", "短途出行"],
+      "unfavorableActivities": ["重大投资", "婚姻嫁娶", "远行迁徙", "动土开工"],
+      "keyPalaces": [
+        {
+          "palace": "坎宫",
+          "significance": "值符所在，为当旺之地，利于交流沟通，增进人际关系"
+        },
+        {
+          "palace": "离宫",
+          "significance": "值使入驻，代表权威和决策，适合处理领导关系"
+        },
+        {
+          "palace": "兑宫",
+          "significance": "开门纳气，有贵人相助，可主动争取机会"
+        }
+      ],
+      "timeSensitiveAdvice": "今日辛时至癸时（15:00-19:00）为吉时，适合重要活动安排"
+    }
+  }

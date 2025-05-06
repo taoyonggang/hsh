@@ -1,0 +1,15 @@
+{
+    "userId": "taoyonggang",
+    "name": "陶永刚",
+    "gender": "男",
+    "age": 40,
+    "bloodType": "A",
+    "baziElement": {
+      "木": 2,
+      "火": 3,
+      "土": 5,
+      "金": 4,
+      "水": 2
+    },
+    "isPremiumMember": false
+  }

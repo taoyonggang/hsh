@@ -1,0 +1,29 @@
+[
+  {
+    "id": "g001",
+    "name": "健康生活俱乐部",
+    "description": "分享健康生活方式和运动技巧的社群",
+    "memberCount": 128,
+    "activityCount": 5,
+    "coverUrl": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438",
+    "lastActive": "今天"
+  },
+  {
+    "id": "g002",
+    "name": "职场八字研究会",
+    "description": "探讨如何将八字与职业发展结合的小组",
+    "memberCount": 86,
+    "activityCount": 2,
+    "coverUrl": "https://images.unsplash.com/photo-1507679799987-c73779587ccf",
+    "lastActive": "昨天"
+  },
+  {
+    "id": "g003",
+    "name": "城市探索者",
+    "description": "组织各类户外活动，探索城市隐藏角落",
+    "memberCount": 215,
+    "activityCount": 8,
+    "coverUrl": "https://images.unsplash.com/photo-1506459225024-1428097a7e18",
+    "lastActive": "3天前"
+  }
+]

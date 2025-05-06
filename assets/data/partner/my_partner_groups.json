@@ -1,0 +1,41 @@
+[
+  {
+    "id": "group1",
+    "name": "户外探险家",
+    "description": "喜欢徒步、露营、登山等户外活动的小伙伴们的集合。定期组织各种户外探险，一起亲近自然，释放压力！",
+    "coverImageUrl": "https://picsum.photos/seed/outdoor/800/400",
+    "tags": ["户外", "徒步", "露营", "登山"],
+    "isPrivate": false,
+    "requiresApproval": true,
+    "creationDate": "2024-12-15",
+    "memberCount": 28,
+    "activityCount": 12,
+    "isActive": true
+  },
+  {
+    "id": "group2",
+    "name": "城市摄影",
+    "description": "发现城市之美，用镜头记录都市风景和人文故事。无论你是摄影新手还是专业摄影师，这里都欢迎你！",
+    "coverImageUrl": "https://picsum.photos/seed/photo/800/400",
+    "tags": ["摄影", "城市", "艺术"],
+    "isPrivate": false,
+    "requiresApproval": false,
+    "creationDate": "2025-01-20",
+    "memberCount": 15,
+    "activityCount": 5,
+    "isActive": true
+  },
+  {
+    "id": "group3",
+    "name": "美食爱好者",
+    "description": "探索各种美食、分享烹饪技巧、一起品尝特色餐厅。定期举办厨艺交流会和餐馆探店活动。",
+    "coverImageUrl": "https://picsum.photos/seed/food/800/400",
+    "tags": ["美食", "烹饪", "探店"],
+    "isPrivate": true,
+    "requiresApproval": true,
+    "creationDate": "2025-02-10",
+    "memberCount": 45,
+    "activityCount": 20,
+    "isActive": true
+  }
+]

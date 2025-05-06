@@ -1,0 +1,113 @@
+{
+  "networkType": "real",
+  "nodes": [
+    {
+      "id": "user123",
+      "name": "taoyonggang",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/32.jpg",
+      "relationshipType": "self",
+      "isMapped": true
+    },
+    {
+      "id": "user456",
+      "name": "李明",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/45.jpg",
+      "relationshipType": "friend",
+      "isMapped": true,
+      "mappedUserId": "vuser001"
+    },
+    {
+      "id": "user789",
+      "name": "王芳",
+      "avatarUrl": "https://randomuser.me/api/portraits/women/22.jpg",
+      "relationshipType": "colleague",
+      "isMapped": false
+    },
+    {
+      "id": "user234",
+      "name": "张伟",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/67.jpg",
+      "relationshipType": "partner",
+      "isMapped": true,
+      "mappedUserId": "vuser003"
+    },
+    {
+      "id": "user345",
+      "name": "刘洋",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/76.jpg",
+      "relationshipType": "friend",
+      "isMapped": false
+    },
+    {
+      "id": "user567",
+      "name": "陈思",
+      "avatarUrl": "https://randomuser.me/api/portraits/women/45.jpg",
+      "relationshipType": "partner",
+      "isMapped": false
+    },
+    {
+      "id": "user678",
+      "name": "赵雪",
+      "avatarUrl": "https://randomuser.me/api/portraits/women/32.jpg",
+      "relationshipType": "colleague",
+      "isMapped": true,
+      "mappedUserId": "vuser007"
+    }
+  ],
+  "connections": [
+    {
+      "sourceId": "user123",
+      "targetId": "user456",
+      "relationshipType": "friend",
+      "strength": 0.8
+    },
+    {
+      "sourceId": "user123",
+      "targetId": "user789",
+      "relationshipType": "colleague",
+      "strength": 0.6
+    },
+    {
+      "sourceId": "user123",
+      "targetId": "user234",
+      "relationshipType": "partner",
+      "strength": 0.9
+    },
+    {
+      "sourceId": "user123",
+      "targetId": "user345",
+      "relationshipType": "friend",
+      "strength": 0.5
+    },
+    {
+      "sourceId": "user123",
+      "targetId": "user567",
+      "relationshipType": "partner",
+      "strength": 0.7
+    },
+    {
+      "sourceId": "user123",
+      "targetId": "user678",
+      "relationshipType": "colleague",
+      "strength": 0.4
+    },
+    {
+      "sourceId": "user456",
+      "targetId": "user789",
+      "relationshipType": "friend",
+      "strength": 0.3
+    },
+    {
+      "sourceId": "user789",
+      "targetId": "user234",
+      "relationshipType": "colleague",
+      "strength": 0.6
+    },
+    {
+      "sourceId": "user234",
+      "targetId": "user345",
+      "relationshipType": "friend",
+      "strength": 0.7
+    }
+  ]
+}

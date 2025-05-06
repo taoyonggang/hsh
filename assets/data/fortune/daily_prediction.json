@@ -1,0 +1,57 @@
+{
+    "periodType": "day",
+    "startDate": "2025-04-21",
+    "endDate": "2025-04-21",
+    "overallRating": 78,
+    "overallDescription": "今日整体运势良好，适合进行创意工作和社交活动，但需注意细节处理和情绪管理。",
+    "aspects": {
+      "career": {
+        "name": "事业",
+        "rating": 75,
+        "description": "工作中有机会展现才能，但需避免与上级发生冲突",
+        "suggestions": [
+          "专注于创意性工作",
+          "主动承担责任",
+          "避免争论"
+        ]
+      },
+      "wealth": {
+        "name": "财运",
+        "rating": 65,
+        "description": "财运平稳，适合理财规划，不宜大额投资",
+        "suggestions": [
+          "做好资金规划",
+          "避免冲动消费",
+          "关注投资机会但暂不行动"
+        ]
+      },
+      "relationship": {
+        "name": "感情",
+        "rating": 85,
+        "description": "人际关系和谐，适合社交活动和感情交流",
+        "suggestions": [
+          "主动联系朋友或伴侣",
+          "表达真实感受",
+          "参加社交活动"
+        ]
+      },
+      "health": {
+        "name": "健康",
+        "rating": 80,
+        "description": "身体状况良好，但需注意情绪波动",
+        "suggestions": [
+          "保持规律作息",
+          "适量运动",
+          "避免过度劳累"
+        ]
+      }
+    },
+    "luckyDates": [],
+    "unluckyDates": [],
+    "advice": [
+      "今天适合处理需要创造力的工作",
+      "注意与人沟通时的语气和方式",
+      "晚上可以安排轻松的社交活动"
+    ],
+    "isPremiumDetail": false
+  }

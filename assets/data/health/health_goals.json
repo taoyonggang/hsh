@@ -1,0 +1,59 @@
+[
+    {
+      "id": "goal1",
+      "category": "体重",
+      "description": "3个月内健康减重5公斤",
+      "startDate": "2025-03-15",
+      "targetDate": "2025-06-15",
+      "status": "进行中",
+      "progress": 40.0,
+      "milestones": [
+        "第一个月减重1.5公斤 - 已完成",
+        "第二个月减重2公斤 - 进行中",
+        "第三个月减重1.5公斤"
+      ]
+    },
+    {
+      "id": "goal2",
+      "category": "运动",
+      "description": "每周进行3次30分钟以上的有氧运动",
+      "startDate": "2025-04-01",
+      "targetDate": "2025-06-30",
+      "status": "进行中",
+      "progress": 65.0,
+      "milestones": [
+        "第一周完成2次 - 已完成",
+        "第二周完成3次 - 已完成",
+        "第三周完成3次 - 已完成",
+        "坚持8周"
+      ]
+    },
+    {
+      "id": "goal3",
+      "category": "睡眠",
+      "description": "养成22:30前入睡的习惯",
+      "startDate": "2025-04-10",
+      "targetDate": "2025-05-10",
+      "status": "进行中",
+      "progress": 30.0,
+      "milestones": [
+        "第一周至少3天做到 - 已完成",
+        "第二周至少5天做到 - 进行中",
+        "第三周开始每天坚持"
+      ]
+    },
+    {
+      "id": "goal4",
+      "category": "饮水",
+      "description": "每天饮水8杯（1600ml）以上",
+      "startDate": "2025-04-05",
+      "targetDate": "2025-05-05",
+      "status": "进行中",
+      "progress": 75.0,
+      "milestones": [
+        "第一周平均6杯 - 已完成",
+        "第二周平均7杯 - 已完成",
+        "第三周开始保持8杯以上 - 进行中"
+      ]
+    }
+  ]

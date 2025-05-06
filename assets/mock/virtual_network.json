@@ -1,0 +1,48 @@
+{
+  "nodes": [
+    {
+      "id": "vu001",
+      "name": "李四",
+      "avatar": "https://randomuser.me/api/portraits/men/41.jpg",
+      "relationship": "同事",
+      "mappedUserId": null
+    },
+    {
+      "id": "vu002",
+      "name": "王五",
+      "avatar": "https://randomuser.me/api/portraits/men/42.jpg",
+      "relationship": "朋友",
+      "mappedUserId": "u789012"
+    },
+    {
+      "id": "vu003",
+      "name": "赵六",
+      "avatar": "https://randomuser.me/api/portraits/men/43.jpg",
+      "relationship": "商业伙伴",
+      "mappedUserId": null
+    }
+  ],
+  "links": [
+    {
+      "source": "vu001",
+      "target": "vu002",
+      "type": "同事",
+      "strength": 80
+    },
+    {
+      "source": "vu002",
+      "target": "vu003",
+      "type": "朋友",
+      "strength": 65
+    }
+  ],
+  "analysis": {
+    "nodeCount": 3,
+    "edgeCount": 2,
+    "centralNode": "vu002",
+    "insights": [
+      "王五是您社交网络中的关键节点",
+      "通过王五可以拓展更多人脉"
+    ]
+  }
+}

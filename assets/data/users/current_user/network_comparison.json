@@ -1,0 +1,78 @@
+{
+  "statistics": {
+    "realNodeCount": 7,
+    "virtualNodeCount": 8,
+    "realEdgeCount": 9,
+    "virtualEdgeCount": 10,
+    "realNetworkDensity": 0.43,
+    "virtualNetworkDensity": 0.36,
+    "sharedCount": 4,
+    "realOnlyCount": 3,
+    "virtualOnlyCount": 4,
+    "realFamilyCount": 0,
+    "virtualFamilyCount": 2,
+    "realFriendsCount": 2,
+    "virtualFriendsCount": 3,
+    "realColleaguesCount": 2,
+    "virtualColleaguesCount": 2,
+    "realPartnersCount": 2,
+    "virtualPartnersCount": 1,
+    "realOthersCount": 1,
+    "virtualOthersCount": 0
+  },
+  "missedConnections": [
+    {
+      "id": "user789",
+      "name": "王芳",
+      "avatarUrl": "https://randomuser.me/api/portraits/women/22.jpg",
+      "reason": "您和此人有频繁互动，但未添加到虚拟网络"
+    },
+    {
+      "id": "user345",
+      "name": "刘洋",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/76.jpg",
+      "reason": "您们共同参与了3个搭子活动，可能是潜在朋友"
+    },
+    {
+      "id": "user567",
+      "name": "陈思",
+      "avatarUrl": "https://randomuser.me/api/portraits/women/45.jpg",
+      "reason": "您们有共同的朋友，但未添加到您的虚拟网络"
+    }
+  ],
+  "strengthDifferences": [
+    {
+      "userId": "user456",
+      "userName": "李明",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/45.jpg",
+      "perceivedStrength": 0.9,
+      "actualStrength": 0.8,
+      "explanation": "您认为关系较为亲密，实际互动频率略低于您的期望"
+    },
+    {
+      "userId": "user678",
+      "userName": "赵雪",
+      "avatarUrl": "https://randomuser.me/api/portraits/women/32.jpg",
+      "perceivedStrength": 0.4,
+      "actualStrength": 0.6,
+      "explanation": "实际互动频率高于您的主观感知"
+    },
+    {
+      "userId": "user234",
+      "userName": "张伟",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/67.jpg",
+      "perceivedStrength": 0.8,
+      "actualStrength": 0.9,
+      "explanation": "实际互动非常频繁，关系比您感知的更亲密"
+    }
+  ],
+  "comparisionData": {
+    "suggestedActions": [
+      "添加王芳到您的虚拟网络",
+      "关注与李明的关系发展，提高互动频率",
+      "与刘洋建立更多联系，TA可能成为您的好友"
+    ],
+    "networkSimilarity": 0.65,
+    "networkHealthScore": 0.78
+  }
+}

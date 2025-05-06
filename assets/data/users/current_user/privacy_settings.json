@@ -1,0 +1,27 @@
+{
+  "basicInfo": {
+    "visibility": "public",
+    "selectedUserIds": [],
+    "allowMapping": true
+  },
+  "sensitiveInfo": {
+    "visibility": "friends",
+    "selectedUserIds": [],
+    "allowMapping": false
+  },
+  "socialInfo": {
+    "visibility": "selected",
+    "selectedUserIds": ["user456", "user234", "user678"],
+    "allowMapping": true
+  },
+  "dataAuthorization": {
+    "autoApproveBasicData": true,
+    "autoApproveSensitiveData": false,
+    "notifyOnDataAccess": true
+  },
+  "mappingSettings": {
+    "allowMappingByAnyone": false,
+    "notifyOnMapping": true,
+    "blockedUserIds": ["user999", "user888"]
+  }
+}

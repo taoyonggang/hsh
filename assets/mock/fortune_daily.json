@@ -1,0 +1,31 @@
+{
+  "date": "2025-04-19",
+  "overallScore": 80,
+  "careerScore": 85,
+  "wealthScore": 75,
+  "healthScore": 78,
+  "relationshipScore": 82,
+  "summary": "今日整体运势良好，工作中有贵人相助，财运稳定",
+  "aspects": {
+    "career": {
+      "score": 85,
+      "summary": "工作顺利，适合开展重要项目",
+      "tips": ["把握上午会议机会", "展示创新想法"]
+    },
+    "wealth": {
+      "score": 75,
+      "summary": "财运稳定，不宜大额投资",
+      "tips": ["适合日常收支", "避免冲动消费"]
+    }
+  },
+  "luckyDirections": {
+    "best": "东南",
+    "worst": "西北"
+  },
+  "luckyTimes": {
+    "best": "13:00-15:00",
+    "worst": "19:00-21:00"
+  },
+  "suitable": ["谈判", "会友", "商务合作"],
+  "unsuitable": ["大额支出", "长途旅行"]
+}

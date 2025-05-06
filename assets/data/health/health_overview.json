@@ -1,0 +1,15 @@
+{
+    "healthScore": 86,
+    "steps": 8526,
+    "calories": 2135,
+    "heartRate": "75 bpm",
+    "sleep": "7.2 小时",
+    "lastUpdated": "2025-04-19 08:30",
+    "scoreDetails": {
+      "physical": 83,
+      "energy": 76,
+      "mental": 91
+    },
+    "weeklyChange": 3,
+    "summary": "总体健康状况良好，建议保持当前生活作息习惯，增加有氧运动频率。"
+  }

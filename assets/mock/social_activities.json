@@ -1,0 +1,38 @@
+[
+  {
+    "id": "a001",
+    "title": "周末晨跑团",
+    "description": "每周六早上7点，奥林匹克公园集合，一起晨跑5公里",
+    "groupId": "g001",
+    "startTime": "2025-04-20T07:00:00",
+    "location": "奥林匹克公园南门",
+    "participantCount": 18,
+    "maxParticipants": 30,
+    "coverUrl": "https://images.unsplash.com/photo-1461897104016-0b3b00cc81ee",
+    "status": 1
+  },
+  {
+    "id": "a002",
+    "title": "职场与八字：如何选择适合的行业",
+    "description": "探讨八字与职业选择的关系，分享实际案例",
+    "groupId": "g002",
+    "startTime": "2025-04-25T19:00:00",
+    "location": "线上会议",
+    "participantCount": 35,
+    "maxParticipants": 50,
+    "coverUrl": "https://images.unsplash.com/photo-1542744173-8659b8e77b1a",
+    "status": 1
+  },
+  {
+    "id": "a003",
+    "title": "城市漫步：老胡同探索之旅",
+    "description": "探索北京传统胡同，了解历史文化，拍摄纪实照片",
+    "groupId": "g003",
+    "startTime": "2025-04-26T14:00:00",
+    "location": "鼓楼大街地铁站",
+    "participantCount": 12,
+    "maxParticipants": 15,
+    "coverUrl": "https://images.unsplash.com/photo-1507677719041-aedc79f7dcd6",
+    "status": 1
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "msg121",
+    "threadId": "thread001",
+    "sender": {
+      "id": "user123",
+      "name": "taoyonggang",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/32.jpg"
+    },
+    "content": "你好，李明！最近忙什么？",
+    "timestamp": "2025-04-29T09:15:23Z",
+    "messageType": "text",
+    "isRead": true
+  },
+  {
+    "id": "msg122",
+    "threadId": "thread001",
+    "sender": {
+      "id": "user456",
+      "name": "李明",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/45.jpg"
+    },
+    "content": "嗨，最近在准备新项目的提案，你呢？",
+    "timestamp": "2025-04-29T09:20:45Z",
+    "messageType": "text",
+    "isRead": true
+  },
+  {
+    "id": "msg123",
+    "threadId": "thread001",
+    "sender": {
+      "id": "user123",
+      "name": "taoyonggang",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/32.jpg"
+    },
+    "content": "我在研究那个社交关系网络的功能，周末有空一起讨论一下吗？",
+    "timestamp": "2025-04-29T10:05:12Z",
+    "messageType": "text",
+    "isRead": true
+  },
+  {
+    "id": "msg124",
+    "threadId": "thread001",
+    "sender": {
+      "id": "user456",
+      "name": "李明",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/45.jpg"
+    },
+    "content": "好啊，我对这个也很感兴趣。你想讨论哪些方面？",
+    "timestamp": "2025-04-29T10:12:33Z",
+    "messageType": "text",
+    "isRead": false
+  },
+  {
+    "id": "msg125",
+    "threadId": "thread001",
+    "sender": {
+      "id": "user456",
+      "name": "李明",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/45.jpg"
+    },
+    "content": "我刚看了一些相关的研究，我可以分享给你",
+    "timestamp": "2025-04-29T10:15:22Z",
+    "messageType": "text",
+    "isRead": false
+  },
+  {
+    "id": "msg126",
+    "threadId": "thread001",
+    "sender": {
+      "id": "user456",
+      "name": "李明",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/45.jpg"
+    },
+    "content": "好的，那我们周末见面时再聊",
+    "timestamp": "2025-04-29T10:23:45Z",
+    "messageType": "text",
+    "isRead": false
+  }
+]
