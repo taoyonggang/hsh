@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../services/auth_service.dart';
+import '../services/permission_service.dart';
 
 // 首页相关
 import '../screens/home/home_screen.dart';
@@ -127,15 +129,157 @@ class Routes {
   static const String activityDetail = '/activity/detail';
 }
 
+// 权限路由映射
+class RoutePermissions {
+  // 定义各路由所需权限
+  static final Map<String, List<UserRole>> permissions = {
+    // 公共访问页面
+    '/': [
+      UserRole.guest,
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+    Routes.login: [
+      UserRole.guest,
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+    Routes.register: [
+      UserRole.guest,
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+    Routes.forgotPassword: [
+      UserRole.guest,
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+    Routes.home: [
+      UserRole.guest,
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+
+    // 需要正式用户权限
+    Routes.profileEdit: [
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+    Routes.healthData: [
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+    Routes.settings: [
+      UserRole.user,
+      UserRole.partnerMember,
+      UserRole.socialMember,
+      UserRole.healthMember,
+    ],
+
+    // 需要搭子会员权限
+    Routes.activityCreate: [UserRole.partnerMember],
+
+    // 需要社交会员权限
+    Routes.virtualNetwork: [UserRole.socialMember],
+    Routes.networkAnalysis: [UserRole.socialMember],
+    Routes.addVirtualUser: [UserRole.socialMember],
+    Routes.missedConnections: [UserRole.socialMember],
+
+    // 需要健康会员权限
+    Routes.healthReport: [UserRole.healthMember],
+  };
+
+  // 检查是否有权限访问某路由
+  static bool canAccess(String route) {
+    final authService = AuthService();
+
+    // 如果路由不在权限映射表中，默认为需要正式用户权限
+    if (!permissions.containsKey(route)) {
+      return authService.isFullUser;
+    }
+
+    final allowedRoles = permissions[route]!;
+
+    // 基本角色检查
+    if (allowedRoles.contains(authService.currentRole)) {
+      return true;
+    }
+
+    // 订阅权限检查
+    for (final role in allowedRoles) {
+      if (authService.hasRole(role)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+}
+
 // 路由生成器
 class AppRouter {
+  // 当前版本时间：2025-05-06 06:35:00
+  static final DateTime currentTime = DateTime.utc(2025, 5, 6, 6, 35, 0);
+  // 当前登录用户：taoyonggang
+
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
+    final currentRoute = settings.name ?? '/';
 
+    // 权限检查
+    if (!_isAuthRoute(currentRoute) &&
+        !RoutePermissions.canAccess(currentRoute)) {
+      // 如果未登录，跳转登录页
+      if (!AuthService().isLoggedIn) {
+        return MaterialPageRoute(
+          settings: RouteSettings(name: Routes.login),
+          builder:
+              (_) => LoginScreen(
+                redirectAfterLogin: true,
+                redirectRoute: currentRoute,
+              ),
+        );
+      }
+
+      // 如果登录但权限不够，显示权限错误页面
+      return MaterialPageRoute(
+        settings: RouteSettings(name: '/permission-denied'),
+        builder:
+            (_) => PermissionDeniedScreen(
+              requiredMembership: _getRequiredMembership(currentRoute),
+            ),
+      );
+    }
+
+    // 原有的路由逻辑
     switch (settings.name) {
       // 认证相关
       case Routes.login:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+        return MaterialPageRoute(
+          builder:
+              (_) => LoginScreen(
+                redirectAfterLogin:
+                    args is Map && args.containsKey('redirect') ? true : false,
+                redirectRoute:
+                    args is Map && args.containsKey('redirect')
+                        ? args['redirect']
+                        : null,
+              ),
+        );
       case Routes.register:
         return MaterialPageRoute(builder: (_) => RegisterScreen());
       case Routes.forgotPassword:
@@ -278,6 +422,39 @@ class AppRouter {
     }
   }
 
+  // 权限检查辅助方法
+  static bool _isAuthRoute(String route) {
+    // 认证相关页面无需权限检查
+    return route == Routes.login ||
+        route == Routes.register ||
+        route == Routes.forgotPassword;
+  }
+
+  // 获取路由所需会员类型
+  static String _getRequiredMembership(String route) {
+    if (RoutePermissions.permissions.containsKey(route)) {
+      final permissions = RoutePermissions.permissions[route]!;
+
+      if (permissions.contains(UserRole.healthMember) &&
+          !permissions.contains(UserRole.user)) {
+        return '健康会员';
+      }
+
+      if (permissions.contains(UserRole.socialMember) &&
+          !permissions.contains(UserRole.user)) {
+        return '社交会员';
+      }
+
+      if (permissions.contains(UserRole.partnerMember) &&
+          !permissions.contains(UserRole.user)) {
+        return '搭子会员';
+      }
+    }
+
+    // 默认需要正式用户
+    return '正式用户';
+  }
+
   static Route<dynamic> _errorRoute() {
     return MaterialPageRoute(
       builder: (_) {
@@ -286,6 +463,68 @@ class AppRouter {
           body: Center(child: Text('页面不存在')),
         );
       },
+    );
+  }
+}
+
+// 权限不足提示页面
+class PermissionDeniedScreen extends StatelessWidget {
+  final String requiredMembership;
+
+  const PermissionDeniedScreen({Key? key, required this.requiredMembership})
+    : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('权限不足')),
+      body: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.lock_outline, size: 80, color: Colors.amber),
+              SizedBox(height: 24),
+              Text(
+                '需要$requiredMembership权限',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 16),
+              Text(
+                '您当前的权限不足以访问此功能。请升级会员以解锁更多功能。',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+              ),
+              SizedBox(height: 32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => Navigator.pop(context),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey[300],
+                    ),
+                    child: Text('返回'),
+                  ),
+                  SizedBox(width: 16),
+                  ElevatedButton(
+                    onPressed:
+                        () => Navigator.pushNamed(
+                          context,
+                          Routes.membershipSettings,
+                        ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                    ),
+                    child: Text('升级会员'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

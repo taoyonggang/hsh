@@ -9,14 +9,14 @@ import 'app/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   // 初始化认证服务
   await AuthService().initialize();
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,14 +24,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        scaffoldBackgroundColor: Color(0xFFF5F6FA),
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.green,
-          foregroundColor: Colors.white,
-        ),
       ),
-      home: MainNavigationScreen(),
       onGenerateRoute: AppRouter.generateRoute,
+      initialRoute: '/',
       debugShowCheckedModeBanner: false,
     );
   }

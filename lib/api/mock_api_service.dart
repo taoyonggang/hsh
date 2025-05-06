@@ -40,7 +40,9 @@ class MockApiService {
   // 获取社交动态
   Future<List<dynamic>> getSocialFeeds() async {
     await Future.delayed(Duration(milliseconds: 500));
-    final data = await rootBundle.loadString('assets/data/social_feeds.json');
+    final data = await rootBundle.loadString(
+      'assets/data/social/social_feeds.json',
+    );
     return json.decode(data);
   }
 
