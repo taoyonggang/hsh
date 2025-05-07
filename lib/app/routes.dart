@@ -440,6 +440,12 @@ class AppRouter {
       case Routes.fortuneDetail:
         return MaterialPageRoute(builder: (_) => FortuneDetailScreen());
 
+      // 在您现有的AppRouter类中添加登录和注册页面的路由处理
+      case '/login':
+        return MaterialPageRoute(builder: (_) => LoginScreen());
+      case '/register':
+        return MaterialPageRoute(builder: (_) => RegisterScreen());
+
       // 搭子相关
       case '/partner':
         return MaterialPageRoute(builder: (_) => PartnerScreen());

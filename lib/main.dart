@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'app/routes.dart';
 import 'services/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'screens/splash/splash_screen.dart'; // 添加导入
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -89,7 +90,9 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
-      // 确保使用明确的根路由
+      // 将home设置为SplashScreen
+      home: SplashScreen(),
+      // 保持initialRoute设置，但实际启动页面由home属性控制
       initialRoute: '/',
       onGenerateRoute: AppRouter.generateRoute,
       debugShowCheckedModeBanner: false,

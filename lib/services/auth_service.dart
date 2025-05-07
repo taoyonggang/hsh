@@ -219,4 +219,33 @@ class AuthService extends ChangeNotifier {
     final sessionData = jsonEncode(_currentSession.toJson());
     await prefs.setString('userSession', sessionData);
   }
+
+  // 用户注册
+  Future<bool> register(String username, String password, String email) async {
+    try {
+      // 这里应该是您的实际注册逻辑，连接到后端API
+      // 以下是模拟实现
+
+      // 模拟网络延迟
+      await Future.delayed(Duration(seconds: 1));
+
+      // 检查用户名是否已存在 (模拟)
+      final prefs = await SharedPreferences.getInstance();
+      final existingUsers = prefs.getStringList('registeredUsers') ?? [];
+
+      if (existingUsers.contains(username)) {
+        return false; // 用户名已存在
+      }
+
+      // 保存新用户 (模拟)
+      existingUsers.add(username);
+      await prefs.setStringList('registeredUsers', existingUsers);
+
+      // 注册成功后自动登录
+      return await login(username, password);
+    } catch (e) {
+      print('注册失败: $e');
+      return false;
+    }
+  }
 }
